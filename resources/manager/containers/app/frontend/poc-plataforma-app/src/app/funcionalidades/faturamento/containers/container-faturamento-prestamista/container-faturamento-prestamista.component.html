@@ -1,0 +1,132 @@
+<section>
+  <form [formGroup]="form" autocomplete="off" (ngSubmit)="consultar(formInstituicao.formulario)">
+
+    <div>
+      <div class="ss-grid">
+        <div class="col-12">
+          <h5>FATURAMENTO</h5>
+        </div>
+
+        <div class="col-12">
+          <sc-instituicao formControlName="instituicao" #formInstituicao></sc-instituicao>
+        </div>
+
+        <div class="col-2">
+          <sc-form-field>
+            <input scInput
+                   scLabel="Data Inicio"
+                   formControlName="dataInicio"
+                   bsDatepicker
+                   [placeholder]="'MM/YYYY'"
+                   [bsConfig]="bsConfig"
+                   (onHidden)="atualizaValidacaoData()"
+                   (change)="atualizaValidacaoData()"
+            />
+            <sc-msg-erro [control]="form.get('dataInicio')"></sc-msg-erro>
+          </sc-form-field>
+        </div>
+
+        <div class="col-2">
+          <sc-form-field>
+            <input scInput
+                   scLabel="Data Fim"
+                   formControlName="dataFim"
+                   bsDatepicker
+                   [placeholder]="'MM/YYYY'"
+                   [bsConfig]="bsConfig"
+                   (onHidden)="atualizaValidacaoData()"
+                   (change)="atualizaValidacaoData()"
+            />
+            <sc-msg-erro [control]="form.get('dataFim')"></sc-msg-erro>
+          </sc-form-field>
+        </div>
+
+        <div class="col-offset-start-4 col-offset-end-4">
+          <sc-form-field>
+            <select scSelect formControlName="statusFaturamento" scLabel="Status Faturamento">
+              <option value="">Selecione</option>
+              <option *ngFor="let status of statusFaturamento"
+                      [value]=status>{{status | enum:'TIPO_STATUS_FATURAMENTO'}}</option>
+            </select>
+            <sc-msg-erro [control]="form.get('statusFaturamento')"></sc-msg-erro>
+          </sc-form-field>
+        </div>
+
+        <div [class.col-4]="true"></div>
+        <div class="col-offset-start-10">
+          <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="submit">
+            <i class="mdi mdi-search-web material-icons ss-icon"></i>Consultar
+          </button>
+        </div>
+        <div class="col-offset-start-11">
+          <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="button" (click)="abrirModalNovoFaturamento()"
+                  *ngxPermissionsOnly="'RCSINICIARFATURAMENTO'"><i
+            class="mdi mdi-plus material-icons ss-icon"></i>Novo Faturamento
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <br>
+  <div class="ss-table ss-table-sortable" *ngIf="(faturamentos$ | async)?.length">
+    <table id="minhaTabela">
+      <thead>
+      <tr>
+        <th>CENTRAL</th>
+        <th>COOPERATIVA</th>
+        <th>CNPJ SEGURADORA</th>
+        <th>RAZÃO SOCIAL</th>
+        <th>DATA SOLICITAÇÃO</th>
+        <th>VERSÃO</th>
+        <th>STATUS</th>
+        <th width="5%"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let faturamento of faturamentos$ | async | paginate: { id: 'paginacao',
+                                                      itemsPerPage: 15,
+                                                      currentPage: (paginacao$ | async)?.pagina + 1,
+                                                      totalItems: (paginacao$ | async)?.totalRegistros}">
+        <td>{{ centralPesquisada }}</td>
+        <td>{{ faturamento.cooperativa }}</td>
+        <td>{{ faturamento.cnpjSeguradora | cpfOuCnpj}}</td>
+        <td>{{ faturamento.razaoSocial }}</td>
+        <td>{{ faturamento.dataSolicitacao }}</td>
+        <td>{{ faturamento.versao }}</td>
+        <td>{{ faturamento.status | enum:'TIPO_STATUS_FATURAMENTO'}}</td>
+        <td data-label="Ações" class="ss-table-actions">
+          <p class="ss-more"><i class="material-icons">more_vert</i>
+            <span class="ss-moretext ss-more-left" *ngxPermissionsExcept="'RCSINICIARFATURAMENTO'">
+              <a class="ss-more-item" (click)="iniciarFaturamento(faturamento)" *ngIf="arquivoEnviado(faturamento)">
+                <i class="material-icons" style="padding-right: 5px">play_circle_outline</i>
+                Iniciar faturamento
+              </a>
+              <a class="ss-more-item" (click)="abrirModalAcompanhamento(faturamento)">
+                <i class="material-icons" style="padding-right: 5px">assignment</i>
+                Acompanhar
+              </a>
+            </span>
+
+            <span class="ss-moretext ss-more-left" *ngxPermissionsOnly="'RCSINICIARFATURAMENTO'">
+              <a class="ss-more-item" (click)="abrirModalAcompanhamento(faturamento)">
+                <i class="material-icons" style="padding-right: 5px">assignment</i>
+                Acompanhar
+              </a>
+            </span>
+          </p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <pagination-controls id="paginacao"
+                         [class.my-pagination]="true"
+                         maxSize="10"
+                         directionLinks="true"
+                         previousLabel="Anterior"
+                         nextLabel="Próximo"
+                         [responsive]="true"
+                         (pageChange)="pageChanged(formInstituicao.formulario, $event)">
+    </pagination-controls>
+  </div>
+
+</section>

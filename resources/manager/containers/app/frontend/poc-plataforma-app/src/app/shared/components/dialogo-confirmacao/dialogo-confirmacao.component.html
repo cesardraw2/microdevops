@@ -1,0 +1,11 @@
+<sc-modal id="dialogo" width="small" headerTitle="{{data.titulo}}">
+    <div class="ss-modal-body" style="padding: 20px;">
+        <p>{{data.mensagem}}</p>
+    </div>
+    <div class="ss-modal-footer">
+        <div class="ss-group-inline">
+            <a class="ss-btn ss-btn-success" (click)="close(true)">{{data.labelConfirmacao}}</a>
+            <a class="ss-btn ss-btn-outline-danger" (click)="close(false)">{{data.labelCancelamento}}</a>
+        </div>
+    </div>
+</sc-modal>

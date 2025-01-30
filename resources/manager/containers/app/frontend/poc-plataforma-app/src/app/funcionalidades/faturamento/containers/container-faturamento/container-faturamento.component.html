@@ -1,0 +1,7 @@
+<div class="borda-fundo-branco">
+  <sc-tab-panel>
+    <sc-tab *ngFor="let protudo of produtos; let i = index" [title]="protudo" >
+      <sc-container-faturamento-prestamista *ngIf="produtos.indexOf('Prestamista') == i"></sc-container-faturamento-prestamista>
+    </sc-tab>
+  </sc-tab-panel>
+</div>

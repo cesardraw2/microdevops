@@ -1,0 +1,29 @@
+<form [formGroup]="formulario">
+  <div class="sgr-center sgr-size-cpf-cnpj-field">
+    <div class="col-12">
+      <sc-form-field>
+        <select scSelect scLabel="" [(ngModel)]="filtroSelecionando" formControlName="tipoFiltro" (change)="changeSelectedTipoFiltro()">
+          <option *ngFor="let item of itemsFiltro" [value]="item.value">
+            {{item.label}}
+          </option>
+        </select>
+      </sc-form-field>
+      <sc-form-field>
+        <br/>
+        <input scInput
+              [readOnly]="!isReadOnly"
+              formControlName="cpfCnpj"
+              [placeholder]="placeHolder"
+              (keydown)="consultarPessoaKeyEvent($event)"
+              />
+        <sc-msg-erro [control]="formulario.get('cpfCnpj')" ></sc-msg-erro>
+      </sc-form-field>
+      <br/>
+      <button class="ss-btn ss-btn-primary" style="width: 150px; height: 46px;"
+          (click)="consultaPessoas()" type="button">
+          <span><span style="color: white;font-size: 16px;">{{'CAPES_FILTRO.BTN_PESQUISA' | translate }}</span> <span><i class="mdi mdi-magnify"
+                style="font-size: 20px; margin-left: 13px; color: white;"></i> </span></span>
+        </button>
+    </div>
+  </div>
+</form>

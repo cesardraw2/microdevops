@@ -1,0 +1,6 @@
+users:
+  - default
+  - name: dev
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCl5tyXlpIvUz6SGwhJOX0AKNXjGFkLs0sE8J82NgsczbQEb7XD5A0POf4s2O18RUQdYx/mE2rUynXS4o9BBeYJbUe17/FT+WSXUpWRPjSzDOiymDJbpxiTi6xNtnpw5lwU01opSPO7pLadqllzkHixx2oVO8ZR33+vs2EHK0FBgtTZ5Z+KVCUCmre/Gq1vjUs+2f/L6iBIaFj4sS3ltGzMWwAhB8N3UeQkgH09knHpo6O75jor7f9ozb/8JsQ6iwpcaXWeaqzYhSPeWTQa/mAutZ+Y6/Q5NNfbl1AOcRbDWWo1OzXFIYi/XyOZG0Zqnar8JegRj9tznoZbrTV7NU/X bancoob_df\antonio.cesar@NADF1506

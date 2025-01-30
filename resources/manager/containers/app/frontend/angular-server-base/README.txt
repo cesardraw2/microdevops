@@ -1,0 +1,1 @@
+Todos os containers de aplicações Angular, serão basedos na imagem desse container.

@@ -1,0 +1,41 @@
+$ESPACO_15: 15px;
+$flex: flex;
+$normal: normal;
+$corPreta: #000000;
+$center: center;
+
+.tituloProponente {
+  position: absolute;
+  right: 50px;
+}
+.espacoTitulo {
+  padding-bottom: $ESPACO_15;
+}
+
+.titulo {
+  font-family: Lato;
+  font-style: $normal;
+  font-weight: $normal;
+  font-size: 14px;
+  line-height: 150%;
+  margin:0 25px 0 25px;
+}
+
+.separador {
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+
+.sub-titulo-seguro {
+  font-family: Lato;
+  font-style: $normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 150%;
+  color: #828282;
+  flex: none;
+  order: 1;
+  align-self: flex-start;
+  margin: 5px 5px;
+}
+

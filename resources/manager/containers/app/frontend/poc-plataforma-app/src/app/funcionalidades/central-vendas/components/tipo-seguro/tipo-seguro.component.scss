@@ -1,0 +1,81 @@
+$corPreta: #000000;
+$normal: normal;
+$center: center;
+$flex: flex;
+
+.ico-seguro {
+  color:white;
+  font-size:150px;
+}
+
+.texto-descricao {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 15px;
+  text-align: justify;
+  color: #656565;
+  min-height: 75px;
+}
+
+.botaoAcessar {
+  width: 100%;
+  align-items: end;
+  justify-content: end;
+  display: grid;
+  padding-right: 20px;
+}
+
+.sub-titulo-seguro {
+  font-family: Lato;
+  font-style: $normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 150%;
+  color: #828282;
+  flex: none;
+  order: 1;
+  align-self: flex-start;
+  margin: 5px 5px;
+}
+
+.titulo-seguro{
+  font-family: Lato;
+  font-style: $normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 17px;
+  color: $corPreta;
+  flex: none;
+  order: 0;
+  align-self: flex-start;
+  margin: 0px 5px;
+}
+
+.caixa-seguros {
+  position: inherit;
+  width: 324px;
+  height: 540px;
+  left: 134px;
+  top: 253px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.caixa-seguros-top {
+  background: #00AE9D;
+  width: 100%;
+  border-radius: 3px 3px 0px 0px;
+  height: 200px;
+  display: $flex;
+  align-items: $center;
+  justify-content: $center;
+}
+
+.texto-alerta {
+  background: #EB5757;
+  position: relative;
+  padding: 10px;
+  color: #ffffff;
+  border-radius: 8px;
+}

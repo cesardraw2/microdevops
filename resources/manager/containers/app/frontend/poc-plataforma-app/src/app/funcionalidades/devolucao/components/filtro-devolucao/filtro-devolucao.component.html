@@ -1,0 +1,125 @@
+<section>
+  <div class="ss-card card-center">
+      <div class="col-12">
+        <h5>DEVOLUÇÃO</h5>
+      </div>
+    <div class="ss-card-header" style="border-bottom: solid 2px #f2f2f2;padding: 14px;">
+      <div class="ss-card-body" style="padding: 0;padding-left: 20px;padding-right: 20px;">
+        <form [formGroup]="form" autocomplete="off">
+          <div class="ss-grid">
+            <div class="col-1">
+              <sc-form-field>
+                <select id="central" scLabel="Central" formControlName="central" name="central" type="text" class="ss-form-control" required (change)="consultarCooperativas()">
+                  <option value="">Selecione</option>
+                  <option *ngFor="let item of (centrais | async)" [value]="item.id">
+                    {{item.nome}}
+                  </option>
+                </select>
+              </sc-form-field>
+            </div>
+            <div class="col-3">
+              <sc-form-field>
+                  <select id="cooperativas" scLabel="Cooperativa" formControlName="cooperativa" name="cooperativas" type="text" class="ss-form-control" required>
+                    <option value="">Selecione a cooperativa</option>
+                    <option *ngFor="let coop of (cooperativas | async)" [value]="coop.idCooperativa">
+                      {{coop.nome}}
+                    </option>
+                  </select>
+              </sc-form-field>
+            </div>
+            <div class="col-2">
+              <sc-form-field>
+              <input scInput scLabel="CPF/CNPJ" formControlName="cpfCnpj" (blur)="formatarCPFCNPJ()" (focus)="retirarFormatoCPFCNPJ()"/>
+              </sc-form-field>
+            </div>
+            <div class="col-2">
+              <sc-form-field>
+                <select id="produto" name="produto" formControlName="produto" type="text" class="ss-form-control" scLabel="Produto">
+                  <option value="">Selecione o produto</option>
+                  <option value="1">Empréstimo</option>
+                  <option value="2">Credito Rural</option>
+                  <option value="3">Conta Corrente</option>
+                </select>
+              </sc-form-field>
+            </div>
+            <div class="col-3">
+              <sc-form-field>
+                <div class="ss-grid">
+                  <div class="col-5">
+                    <input scInput
+                          scLabel="Período"
+                          formControlName="dataInicial"
+                          bsDatepicker
+                          [placeholder]="'DD/MM/YYYY'"
+                          [bsConfig]="{minMode: 'day',dateInputFormat: 'MM/YYYY', containerClass: 'theme-datapick'}"/>
+                    </div>
+                          à
+                    <div class="col-6">
+                      <input scInput
+                            formControlName="dataFinal"
+                            bsDatepicker
+                            [placeholder]="'DD/MM/YYYY'"
+                            [bsConfig]="{minMode: 'day',dateInputFormat: 'MM/YYYY', containerClass: 'theme-datapick'}"/>
+                    </div>
+                </div>
+              </sc-form-field>
+            </div>
+            <div class="col-2">
+              <sc-form-field>
+                <select id="cooperativas" name="cooperativas" formControlName="statusDevolucao" type="text" class="ss-form-control" scLabel="Status">
+                  <option value="">Selecione o status</option>
+                  <option value="ARQUIVO_ENVIADO">Arquivo Enviado</option>
+                  <option value="PROCESSAMENTO">Em Processamento</option>
+                  <option value="FATURA_DISPONIVEL">Fatura Disponível</option>
+                  <option value="FATURA_CONTESTADA">Fatura Contestada</option>
+                  <option value="CANCELADO">Cancelado</option>
+                  <option value="CONCLUIDO">Concluído</option>
+                </select>
+              </sc-form-field>
+            </div>
+            <div class="col-1" style="margin-top:33px;">
+                <button class="ss-btn ss-btn-primary ss-btn-icon-left" (click)="consultarDevolucao()" type="button"><i class="mdi mdi-search-web material-icons ss-icon"></i>Consultar</button>
+            </div>
+            <div class="col-1" style="margin-top:33px;">
+                <button class="ss-btn ss-btn-primary ss-btn-icon-left" (click)="abrirModalIncluir()" type="button"><i class="mdi mdi-plus material-icons ss-icon"></i>Incluir</button>
+            </div>
+          </div>
+        </form>
+        <br><br>
+        <div class="ss-table ss-table-sortable">
+          <table id="minhaTabela">
+            <thead>
+            <tr>
+              <th>CPF/CNPJ</th>
+              <th>Contrato</th>
+              <th>Produto</th>
+              <th>Status</th>
+              <th>Data Última Situação</th>
+              <th style="width: 12px;"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let devolucao of devolucoes | async">
+              <td>{{ devolucao.cpfCnpj }}</td>
+              <td>{{ devolucao.numeroContrato }}</td>
+              <td>{{ devolucao.produto }}</td>
+              <td>{{ devolucao.status }}</td>
+              <td>{{ devolucao.dataUltimaSituacao }}</td>
+              <td data-label="Ações" class="ss-table-actions">
+                  <p class="ss-more"><i class="material-icons">more_vert</i>
+                    <span class="ss-moretext ss-more-left">
+                      <a [hidden]="visualizarValidarStatus(devolucao)" class="ss-more-item" (click)="abrirModalAltera(devolucao)"><i class="material-icons" style="padding-right: 5px">pageview</i>Visualizar</a>
+                      <a [hidden]="visualizarValidarStatus(devolucao)" class="ss-more-item" (click)="enviarAnalise(devolucao)"><i class="material-icons" style="padding-right: 5px">play_circle_outline</i>Enviar análise</a>
+                      <a [hidden]="!visualizarValidarStatus(devolucao)" class="ss-more-item" (click)="abrirModalAcompanhar(devolucao)"><i class="material-icons" style="padding-right: 5px">assignment</i>Acompanhar</a>
+                    </span>
+                  </p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

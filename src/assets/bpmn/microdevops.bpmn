@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1ijv388" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+    <bpmn:collaboration id="Collaboration_001">
+        <bpmn:extensionElements>
+            <camunda:properties>
+                <camunda:property />
+            </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:participant id="Participant_001" name="FrontEnd" processRef="Process_001" />
+    </bpmn:collaboration>
+    <bpmn:process id="Process_001" name="Processo 001 - FrontEnd" isExecutable="true" camunda:versionTag="v1.0.0">
+        <bpmn:extensionElements>
+            <camunda:executionListener event="start">
+                <camunda:script scriptFormat="ts">startProcessMonitoring</camunda:script>
+            </camunda:executionListener>
+        </bpmn:extensionElements>
+        <bpmn:startEvent id="init" name="Start">
+            <bpmn:extensionElements>
+                <camunda:executionListener event="start">
+                    <camunda:script scriptFormat="ts">functionInit</camunda:script>
+                </camunda:executionListener>
+            </bpmn:extensionElements>
+            <bpmn:outgoing>F001</bpmn:outgoing>
+        </bpmn:startEvent>
+        <bpmn:task id="A001" name="Executar function001">
+            <bpmn:documentation>CA 1: Quando o usuário clicar na opção "Gravar" do vida individual na API de Registrar, o sistema deve aplicar os seguintes critérios de aceite:</bpmn:documentation>
+            <bpmn:extensionElements>
+                <camunda:inputOutput>
+                    <camunda:outputParameter name="result">${result =1+1}</camunda:outputParameter>
+                </camunda:inputOutput>
+                <camunda:executionListener event="start">
+                    <camunda:script scriptFormat="ts">function001</camunda:script>
+                </camunda:executionListener>
+            </bpmn:extensionElements>
+            <bpmn:incoming>F001</bpmn:incoming>
+            <bpmn:outgoing>F002</bpmn:outgoing>
+        </bpmn:task>
+        <bpmn:exclusiveGateway id="G001.1" name="Verify result">
+            <bpmn:extensionElements>
+                <camunda:executionListener event="start">
+                    <camunda:script scriptFormat="ts">decision001</camunda:script>
+                </camunda:executionListener>
+            </bpmn:extensionElements>
+            <bpmn:incoming>F002</bpmn:incoming>
+            <bpmn:outgoing>F003</bpmn:outgoing>
+            <bpmn:outgoing>F004</bpmn:outgoing>
+        </bpmn:exclusiveGateway>
+        <bpmn:task id="A002" name="Executar&#10;function002">
+            <bpmn:extensionElements>
+                <camunda:executionListener event="start">
+                    <camunda:script scriptFormat="ts">function002</camunda:script>
+                </camunda:executionListener>
+            </bpmn:extensionElements>
+            <bpmn:incoming>F003</bpmn:incoming>
+            <bpmn:outgoing>F005</bpmn:outgoing>
+        </bpmn:task>
+        <bpmn:endEvent id="end" name="End">
+            <bpmn:extensionElements>
+                <camunda:executionListener event="start">
+                    <camunda:script scriptFormat="ts">functionEnd</camunda:script>
+                </camunda:executionListener>
+            </bpmn:extensionElements>
+            <bpmn:incoming>F005</bpmn:incoming>
+            <bpmn:incoming>F006</bpmn:incoming>
+        </bpmn:endEvent>
+        <bpmn:task id="A003" name="Executar&#10;function003">
+            <bpmn:extensionElements>
+                <camunda:executionListener event="start">
+                    <camunda:script scriptFormat="ts">function003</camunda:script>
+                </camunda:executionListener>
+            </bpmn:extensionElements>
+            <bpmn:incoming>F004</bpmn:incoming>
+            <bpmn:outgoing>F006</bpmn:outgoing>
+        </bpmn:task>
+        <bpmn:sequenceFlow id="F001" sourceRef="init" targetRef="A001" />
+        <bpmn:sequenceFlow id="F002" sourceRef="A001" targetRef="G001.1" />
+        <bpmn:sequenceFlow id="F003" sourceRef="G001.1" targetRef="A002">
+            <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${result == 2}</bpmn:conditionExpression>
+        </bpmn:sequenceFlow>
+        <bpmn:sequenceFlow id="F004" sourceRef="G001.1" targetRef="A003">
+            <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${result != 2}</bpmn:conditionExpression>
+        </bpmn:sequenceFlow>
+        <bpmn:sequenceFlow id="F005" sourceRef="A002" targetRef="end" />
+        <bpmn:sequenceFlow id="F006" sourceRef="A003" targetRef="end" />
+    </bpmn:process>
+    <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+        <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_001">
+            <bpmndi:BPMNShape id="Participant_0kcdsfl_di" bpmnElement="Participant_001" isHorizontal="true">
+                <dc:Bounds x="160" y="79" width="830" height="371" />
+                <bpmndi:BPMNLabel />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="init">
+                <dc:Bounds x="222" y="192" width="36" height="36" />
+                <bpmndi:BPMNLabel>
+                    <dc:Bounds x="229" y="235" width="24" height="14" />
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="Activity_03nb1qc_di" bpmnElement="A001">
+                <dc:Bounds x="320" y="170" width="100" height="80" />
+                <bpmndi:BPMNLabel />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="Gateway_1vajiqw_di" bpmnElement="G001.1" isMarkerVisible="true">
+                <dc:Bounds x="495" y="185" width="50" height="50" />
+                <bpmndi:BPMNLabel>
+                    <dc:Bounds x="541" y="223" width="58" height="14" />
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="Activity_0hz05u2_di" bpmnElement="A002">
+                <dc:Bounds x="580" y="100" width="100" height="80" />
+                <bpmndi:BPMNLabel />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="Event_1359mew_di" bpmnElement="end">
+                <dc:Bounds x="742" y="192" width="36" height="36" />
+                <bpmndi:BPMNLabel>
+                    <dc:Bounds x="790" y="200" width="20" height="14" />
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="Activity_16q4yoq_di" bpmnElement="A003">
+                <dc:Bounds x="580" y="250" width="100" height="80" />
+                <bpmndi:BPMNLabel />
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge id="Flow_1xp76to_di" bpmnElement="F001">
+                <di:waypoint x="258" y="210" />
+                <di:waypoint x="320" y="210" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="Flow_0yp2bsg_di" bpmnElement="F002">
+                <di:waypoint x="420" y="210" />
+                <di:waypoint x="495" y="210" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="Flow_1qaupqi_di" bpmnElement="F003">
+                <di:waypoint x="520" y="185" />
+                <di:waypoint x="520" y="140" />
+                <di:waypoint x="580" y="140" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="Flow_0xptef3_di" bpmnElement="F004">
+                <di:waypoint x="520" y="235" />
+                <di:waypoint x="520" y="290" />
+                <di:waypoint x="580" y="290" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="Flow_1cufdpv_di" bpmnElement="F005">
+                <di:waypoint x="680" y="140" />
+                <di:waypoint x="760" y="140" />
+                <di:waypoint x="760" y="192" />
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="Flow_1aoh8qk_di" bpmnElement="F006">
+                <di:waypoint x="680" y="290" />
+                <di:waypoint x="760" y="290" />
+                <di:waypoint x="760" y="228" />
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</bpmn:definitions>

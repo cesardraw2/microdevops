@@ -1,0 +1,66 @@
+<div>
+  <div class="sgr-card card-inicial-lista-produto">
+    <div style="width: 200px;">
+      <span><i class="mdi mdi-account-circle icon-user-lista-produto"></i> </span>
+    </div>
+    <div style="width: 100%;">
+      <label class="texto-titulo-lista-produto">Olá, este é o Perfil do nosso cooperado</label>
+      <label class="texto-titulo-proponente-lista-produto">{{ (proponente$ | async)?.nomePessoa }}</label>
+    </div>
+    <div class="caixa-proca-proponente-lista-produto">
+      <div style="width: 130px;">
+        <a (click)=encaminharTelaConsulta()>
+          <div style="float:left;"><label>Trocar cooperado</label></div>
+          <div style="float:right;"> <span> <i class="mdi mdi-logout-variant" style="font-size: 17px;"></i></span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 25px;">
+    <sc-card>
+      <sc-card-header>
+        <div class="ss-grid titulo-lista-produto">
+          <div class="col-6">
+            <h5>Carteira de seguros</h5>
+          </div>
+        </div>
+      </sc-card-header>
+      <sc-card-subtitle>
+        <div class="titulo">
+          Proteção para o que você ama. Tranquilidade para você. Cuidar do que é mais significativo em sua vida começa
+          com a escolha de um seguro feito sob medida para suas necessidades. No Sicoob, você encontra planos flexíveis
+          e personalizados, associados a uma cesta de serviços exclusiva para garantir que você, sua família e seu
+          patrimônio estejam sempre protegidos.
+          <div class="separador">
+            <hr />
+          </div>
+        </div>
+      </sc-card-subtitle>
+      <sc-card-content>
+        <div class="container-card">
+          <div *ngIf="!isPessoaJuridica">
+            <sgr-tipo-seguro-card titulo="Seguros Vida Individual" productName="SVD" linkOpenButton="{{urlSvd}}" *ngxPermissionsOnly="'FNCACESSARSVD'"
+              descricao="Garante a segurança e a proteção do futuro financeiro dos cooperados, o de sua família e o de quem é importante, sem que a renda atual seja comprometida. Traz proteção em vários momentos da vida, oferecendo o que o cooperado precisa, além de benefícios!"
+              icon="mdi mdi-heart ico-seguro-card"></sgr-tipo-seguro-card>
+          </div>
+          <div>
+            <sgr-tipo-seguro-card titulo="Seguro Vida Empresarial" productName="SVE" linkOpenButton="{{urlSve}}" *ngxPermissionsOnly="'FNCSVEGERENCIAMENTO'"
+              descricao="É um seguro abrangente e de fácil administração, que proporciona a proteção financeira que os funcionários da empresa precisam, com benefícios tanto para a Empresa quanto para o funcionário."
+              icon="mdi mdi-heart ico-seguro-card"></sgr-tipo-seguro-card>
+          </div>
+          <div>
+            <sgr-tipo-seguro-card titulo="Previdência Privada" productName="VGBL" linkOpenButton="{{urlVgbl}}" *ngxPermissionsOnly="'FNCACESSARVGBL'"
+              descricao="É um plano de previdência complementar que possibilita aos participantes a realização de contribuições periódicas, aportes e portabilidades, visando à construção de um planejamento financeiro para o futuro."
+              icon="mdi mdi-heart ico-seguro-card"></sgr-tipo-seguro-card>
+          </div>
+          <div>
+            <sgr-tipo-seguro-card titulo="Seguro Vida Prestamista" productName="SVP" linkOpenButton="{{urlSpr}}"
+              descricao="O Seguro Vida Prestamista promove um cuidado especial com a família do cooperado quando ela mais precisa, garantindo a quitação do saldo devedor de uma dívida."
+              icon="mdi mdi-heart ico-seguro-card"></sgr-tipo-seguro-card>
+          </div>
+        </div>
+      </sc-card-content>
+    </sc-card>
+  </div>
+</div>

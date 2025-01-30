@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+    portainer:
+        image: portainer/portainer-ce:latest
+        container_name: portainer
+        restart: unless-stopped
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - portainer_data:/data
+        labels:
+        - "traefik.enable=true"
+#        - "traefik.http.routers.portainer-http.rule=Host(`dev-server.mshome.net`)"
+        - "traefik.http.routers.portainer-http.rule=Host(`dev-server.mshome.net`) && PathPrefix(`/`)"
+        - "traefik.http.routers.portainer-http.entrypoints=portainerview"
+        - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+
+        networks:
+            - dev-server-network
+
+volumes:
+    portainer_data:
+        external: true
+
+networks:
+    dev-server-network:
+        external: true
+

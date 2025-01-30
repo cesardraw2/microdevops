@@ -1,0 +1,70 @@
+<sc-card>
+  <sc-card-header>
+    <div class="ss-grid espacoTitulo">
+      <div class="col-6 col-md-6">
+        <h5>Portfólio de seguros</h5>
+      </div>
+      <div class="col-6 col-md-6 tituloProponente">
+        <div style="margin: 0px 0px 6px 0px;"> {{(proponente | async)?.cpfCnpj}} - {{(proponente | async)?.nomeCompleto}} </div>
+      </div>
+    </div>
+  </sc-card-header>
+  <sc-card-subtitle>
+    <div class="titulo">
+      Aproveitar os bons momentos ao lado de quem é especial é uma das melhores coisas da vida. Para isso, ter um seguro é importante para proteger as vidas e as conquistas dos nossos cooperados. Abaixo você encontra algumas soluções que o Sicoob Seguros disponibiliza para amparo do que mais importa!
+      <div class="separador"><hr/></div>
+    </div>
+  </sc-card-subtitle>
+  <sc-card-content>
+    <div class="container-card">
+      <div>
+        <sgr-tipo-seguro-card titulo="Seguro Vida Empresarial" productName="SVE" linkOpenButton="{{urlSve}}" *ngxPermissionsOnly="'FNCSVEVENDA'"
+        descricao="É um seguro abrangente e de fácil administração, que proporciona a proteção financeira que os funcionários da empresa precisam, com benefícios tanto para a Empresa quanto para o funcionário."
+        icon="mdi mdi-heart ico-seguro-card"
+        ></sgr-tipo-seguro-card>
+      </div>
+
+      <div *ngIf="!isPessoaJuridica">
+        <sgr-tipo-seguro-card titulo="Seguro Residencial" productName="SRE" linkOpenButton="{{urlSeguroResidencial}}"  *ngxPermissionsOnly="'FNCSEGURORESIDENCIAL'"
+        descricao="Garanta a segurança e tranquilidade do lar do seu (sua) cooperado (a). O Seguro Residencial oferece vantagens e um amplo leque de coberturas opcionais à sua escolha."
+        icon="mdi mdi-home ico-seguro-card"
+        ></sgr-tipo-seguro-card>
+      </div>
+
+      <div>
+        <sgr-tipo-seguro-card titulo="Seguro Empresarial" productName="SGR-PATRIMONIAL" linkOpenButton="{{urlSgrPatrimonial}}"  *ngxPermissionsOnly="'FNCSEGUROEMPRESARIAL'"
+        descricao="O Seguro Empresarial do Sicoob garante proteção às empresas e sonhos dos nossos cooperados. Um seguro que proporciona tranquilidade para nossas empresas irem mais longe"
+        icon="mdi mdi-store ico-seguro-card"
+        ></sgr-tipo-seguro-card>
+      </div>
+      <div *ngIf="!isPessoaJuridica">
+        <sgr-tipo-seguro-card titulo="Seguro Vida Individual" productName="SVD" linkOpenButton="{{urlSvd}}" *ngxPermissionsOnly="'FNCSVDVENDA'"
+        descricao="Os seguros de vida garantem a segurança e a proteção do futuro financeiro dos cooperados, o de sua família e o de quem é importante, sem que a renda atual seja comprometida. Trazem proteção em vários momentos da vida, oferecendo o que o cooperado precisa, além de benefícios! Confira as opções e ofereça a ideal para o cooperado."
+        icon="mdi mdi-heart ico-seguro-card"></sgr-tipo-seguro-card>
+      </div>
+
+
+      
+        <div *ngIf="isPessoaJuridica">
+          <sgr-tipo-seguro-card titulo="Seguro de Vida em Grupo Cotado" productName="SVGC" linkOpenButton="{{urlSvgc}}" *ngxPermissionsOnly="'FNCACESSARVGCOTADO'"
+            descricao="É um seguro personalizado de acordo com as necessidades do estipulante. Taxa calculada de acordo com as características e perfil de cada grupo. O produto é indicado para médias e grandes empresas associadas ou não ao Sicoob."
+            icon="mdi mdi-heart ico-seguro-card"></sgr-tipo-seguro-card>
+        </div>
+
+
+      <div *ngIf="!isPessoaJuridica">
+        <sgr-tipo-seguro-card titulo="Seguro Transações" productName="SGT" linkOpenButton="{{urlSgt}}"  *ngxPermissionsOnly="'FNCSEGUROTRANSACOESDIGITAIS'"
+        descricao="O Seguro Transações do Sicoob tem por objetivo proteger as transações financeiras (PIX, TED e DOC), saque ou compras Sob Coação, além de roubo ou furto da bolsa e seus pertences."
+        icon="mdi mdi-bank-transfer ico-seguro-card"
+        ></sgr-tipo-seguro-card>
+      </div>
+
+      <div *ngIf="!isPessoaJuridica">
+          <sgr-tipo-seguro-card titulo="Seguro Celular" productName="SGCEL" linkOpenButton="{{urlSgcel}}"  *ngxPermissionsOnly="'FNCSEGUROCELULAR'"
+          descricao="O Seguro Celular tem por objetivo garantir o pagamento de uma indenização por prejuízos sofridos e devidamente comprovados, por meio de roubo ou furto qualificado e danos materiais acidentais do aparelho celular."
+          icon="mdi mdi-cellphone-lock ico-seguro-card"
+          ></sgr-tipo-seguro-card>
+      </div>
+    </div>
+  </sc-card-content>
+</sc-card>

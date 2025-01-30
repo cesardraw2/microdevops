@@ -1,0 +1,292 @@
+{
+  "cars": [
+    {
+      "id": 15,
+      "nome": "asdasd22",
+      "ano": 2222,
+      "valor": 2222
+    },
+    {
+      "id": 16,
+      "nome": "asdasdasd",
+      "ano": 12321,
+      "valor": 2342342.34
+    },
+    {
+      "id": 17,
+      "nome": "wwww",
+      "ano": 22,
+      "valor": 2222.22
+    },
+    {
+      "id": 18,
+      "nome": "1234",
+      "ano": 1234,
+      "valor": 12.34
+    },
+    {
+      "id": 19,
+      "nome": "fgdg",
+      "ano": 34543,
+      "valor": 345.34
+    },
+    {
+      "id": 20,
+      "nome": "423",
+      "ano": 234,
+      "valor": 234.32,
+      "nome": "teste",
+      "ano": 123123,
+      "valor": 21324.65
+    },
+    {
+      "id": 19,
+      "nome": "12341234123",
+      "ano": 4123412341234,
+      "valor": 1234123412.34
+    }
+  ],
+  "central": [
+    {
+      "id": 1001,
+      "nome": "Central 1"
+    },
+    {
+      "id": 1002,
+      "nome": "Central 2"
+    },
+    {
+      "id": 1003,
+      "nome": "Central 3"
+    }
+  ],
+  "cooperativa": [
+    {
+      "id": 1001,
+      "idCooperativa": 1,
+      "nome": "Cooperativa 1"
+    },
+    {
+      "id": 1001,
+      "idCooperativa": 910,
+      "nome": "Cooperativa 910"
+    },
+    {
+      "id": 1002,
+      "idCooperativa": 2,
+      "nome": "Cooperativa 2"
+    },
+    {
+      "id": 1003,
+      "idCooperativa": 3,
+      "nome": "Cooperativa 3"
+    }
+  ],
+  "devolucao": [
+    {
+      "id": 1,
+      "central": "1001",
+      "cooperativa": "11",
+      "cpfCnpj": "952.282.090-34",
+      "nomeRazaoSocial": "Seguradora Cooperativa 11",
+      "numeroContrato": "4645465461216546",
+      "numeroContaCorrenteCooperativa": "1212312",
+      "numeroContaCorrente": "2223323",
+      "tipoConta": "2",
+      "produto": "1",
+      "status": "PENDENTE_ENVIO",
+      "dataUltimaSituacao": "01/02/2019",
+      "arquivos": [
+        {
+          "nomeArquivo": "Teste de arquivo",
+          "base64": "12423423423423423545435"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "central": "1002",
+      "cooperativa": "2",
+      "cpfCnpj": "952.282.090-32",
+      "nomeRazaoSocial": "Seguradora Cooperativa 22",
+      "numeroContrato": "4645465461216546",
+      "numeroContaCorrenteCooperativa": "1212312",
+      "numeroContaCorrente": "2223323",
+      "tipoConta": "2",
+      "produto": "1",
+      "status": "EM_ANALISE",
+      "dataUltimaSituacao": "01/03/2019",
+      "arquivos": [
+        {
+          "nomeArquivo": "Teste de arquivo",
+          "base64": "12423423423423423545435"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "central": "1003",
+      "cooperativa": "3",
+      "cpfCnpj": "952.282.090-33",
+      "nomeRazaoSocial": "Seguradora Cooperativa 33",
+      "numeroContrato": "4645465461216546",
+      "numeroContaCorrenteCooperativa": "234234",
+      "numeroContaCorrente": "234",
+      "tipoConta": "2",
+      "produto": "1",
+      "status": "PENDENTE_ENVIO",
+      "dataUltimaSituacao": "01/03/2012"
+    }
+  ],
+  "faturamento": [
+    {
+      "id": 1,
+      "central": "1001",
+      "cooperativa": "11",
+      "cnpjSeguradora": "1234567890",
+      "razaoSocial": "teste",
+      "dataSolicitacao": "01/03/2019",
+      "versao": "01",
+      "status": "ARQUIVO ENVIADO"
+    },
+    {
+      "id": 2,
+      "central": "1001",
+      "cooperativa": "1",
+      "cnpjSeguradora": "1234567890",
+      "razaoSocial": "teste",
+      "dataSolicitacao": "01/04/2019",
+      "versao": "01",
+      "status": "EM PROCESSAMENTO"
+    },
+    {
+      "id": 3,
+      "central": "1003",
+      "cooperativa": "3",
+      "cnpjSeguradora": "1234567890",
+      "razaoSocial": "teste",
+      "dataSolicitacao": "02/04/2019",
+      "versao": "01",
+      "status": "FATURAMENTO CANCELADO"
+    },
+    {
+      "id": 4,
+      "central": "1002",
+      "cooperativa": "2",
+      "cnpjSeguradora": "1234567890",
+      "razaoSocial": "teste",
+      "dataSolicitacao": "01/01/1997",
+      "versao": "02",
+      "status": "FATURA DISPONÍVEL"
+    },
+    {
+      "id": 5,
+      "central": "1002",
+      "cooperativa": "2",
+      "cnpjSeguradora": "1234567890",
+      "razaoSocial": "teste",
+      "dataSolicitacao": "01/01/1997",
+      "versao": "02",
+      "status": "FATURAMENTO CONCLUIDO"
+    },
+    {
+      "id": 6,
+      "central": "1002",
+      "cooperativa": "2",
+      "cnpjSeguradora": "1234567890",
+      "razaoSocial": "teste",
+      "dataSolicitacao": "01/01/1997",
+      "versao": "02",
+      "status": "FATURA CONSTESTADA"
+    },
+    {
+      "central": 1001,
+      "cooperativa": "910",
+      "data": "2019-10-30T02:14:27.168Z",
+      "arquivoNas": "3353102019_02_012345678901234.txt",
+      "id": 7
+    },
+    {
+      "central": 1001,
+      "cooperativa": "1",
+      "idUnidadeInst": 0,
+      "data": "2015-05-01T03:00:00.000Z",
+      "arquivoNas": null,
+      "id": 8
+    },
+    {
+      "central": 1001,
+      "cooperativa": "910",
+      "idUnidadeInst": 0,
+      "data": "2019-10-30T20:26:40.452Z",
+      "arquivoNas": "3353102019_01_012345678901234.txt",
+      "id": 9
+    }
+  ],
+  "propostas": [
+    {
+      "id": "1",
+      "numero": "1001",
+      "produto": "Seguro vida",
+      "dataContratacao":"2019-10-30T20:26:40.452Z",
+      "instituicao": {
+        "central": 1001,
+        "cooperativa": 910,
+        "pa": 12312
+      },
+      "proponente": {
+        "cpfCnpj": "95228209034",
+        "nome": "Joao Fulano da Silva",
+        "id": 1
+      },
+      "situacaoAtual": {
+        "dataAtualizacao":"2019-10-30T20:26:40.452Z",
+        "situacao": "PENDENTE",
+        "comentario": "djhsfl j shlfsdhf lsdhflksdjhflsjkdhflkdsjf"
+      },
+      "bateriaVenda": {
+        "canalContratacao":"MOBILE",
+        "periodicidadeCobranca":"MENSAL",
+        "premioMensal":"4.655,00",
+        "capitalSegurado":"45.555,00",
+        "angariador": {
+          "cpfCnpj":"45678945644",
+          "nome":"Silvia Fulana de Tal",
+          "id": 2223
+        }
+      }
+
+    }
+  ],
+  "corretoras": [
+    {
+      "id": 950,
+      "numeroSusep": "100132942",
+      "nome": "MINASEG-CREDIMINAS ADMINISTRADORA CORRETORA SEG LT"
+    }
+],
+  "corretorass": [
+    {
+      "id": 131,
+      "nome": "Uni Corretora de Seguros",
+      "cnpj": "08540986000102",
+      "codigoSusep": 100575828,
+      "central": 4,
+      "cooperativa": 11
+    },
+
+    {
+      "id": 132,
+      "nome": "Sicoob Corretora SC",
+      "cnpj": "08540986000168",
+      "codigoSusep": 100575825,
+      "central": 2,
+      "cooperativa": 8
+    }
+  ],
+  "validacao": [
+    {
+      "mensagens": ["Endereço", "CNAE", "Documentos", "Renda Mensal"]
+    }
+  ]
+}

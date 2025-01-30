@@ -1,0 +1,34 @@
+<ngx-spinner bdColor="rgba(251,240,240,0.41)" size="default" color="#048403" type="ball-clip-rotate"
+    [fullScreen]="true">
+</ngx-spinner>
+<sc-root>
+    <main id="app" class="app-grid">
+        <!-- Navbar area -->
+        <!-- Navbar -->
+        <div class="app-navbar">
+            <sc-navbar title="Plataforma de Seguro" [homeRoute]="'/'" [user]="(user$ | async)" [hasMultiInstituition]="false"
+                [items]="itemsNavbar" [version]="version" (itemClick)="onItemClick($event)" (logout)="logout()">
+            </sc-navbar>
+
+        </div>
+
+        <div class="app-toolbar">
+            <sc-container-toolbar #menuSgr></sc-container-toolbar>
+        </div>
+
+        <!-- Problema no componente header -->
+        <header class="app-header">
+            <sc-header></sc-header>
+        </header>
+        <!-- Content area -->
+        <section class="app-content" [class.grid-col-span-2]="(isClosed() | async)">
+            <router-outlet></router-outlet>
+            <div id="action-bar-container" class="hidden"></div>
+            <div id="alert-container"></div>
+        </section>
+        <aside class="app-sidebar" [hidden]="(isClosed() | async)">
+            <sc-sidebar-container #sidebar></sc-sidebar-container>
+        </aside>
+
+    </main>
+</sc-root>

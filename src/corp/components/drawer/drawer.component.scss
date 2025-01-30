@@ -1,0 +1,133 @@
+/* Variables */
+:root {
+    --corp-drawer-width: 320px;
+}
+
+corp-drawer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    width: var(--corp-drawer-width);
+    min-width: var(--corp-drawer-width);
+    max-width: var(--corp-drawer-width);
+    z-index: 300;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .35);
+    @apply bg-card;
+
+    /* Animations */
+    &.corp-drawer-animations-enabled {
+        transition-duration: 400ms;
+        transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition-property: visibility, margin-left, margin-right, transform, width, max-width, min-width;
+
+        .corp-drawer-content {
+            transition-duration: 400ms;
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition-property: width, max-width, min-width;
+        }
+    }
+
+    /* Over mode */
+    &.corp-drawer-mode-over {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+
+        /* Fixed mode */
+        &.corp-drawer-fixed {
+            position: fixed;
+        }
+    }
+
+    /* Left position */
+    &.corp-drawer-position-left {
+
+        /* Side mode */
+        &.corp-drawer-mode-side {
+            margin-left: calc(var(--corp-drawer-width) * -1);
+
+            &.corp-drawer-opened {
+                margin-left: 0;
+            }
+        }
+
+        /* Over mode */
+        &.corp-drawer-mode-over {
+            left: 0;
+            transform: translate3d(-100%, 0, 0);
+
+            &.corp-drawer-opened {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        /* Content */
+        .corp-drawer-content {
+            left: 0;
+        }
+    }
+
+    /* Right position */
+    &.corp-drawer-position-right {
+
+        /* Side mode */
+        &.corp-drawer-mode-side {
+            margin-right: calc(var(--corp-drawer-width) * -1);
+
+            &.corp-drawer-opened {
+                margin-right: 0;
+            }
+        }
+
+        /* Over mode */
+        &.corp-drawer-mode-over {
+            right: 0;
+            transform: translate3d(100%, 0, 0);
+
+            &.corp-drawer-opened {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        /* Content */
+        .corp-drawer-content {
+            right: 0;
+        }
+    }
+
+    /* Content */
+    .corp-drawer-content {
+        position: absolute;
+        display: flex;
+        flex: 1 1 auto;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        @apply bg-card;
+    }
+}
+
+/* Overlay */
+.corp-drawer-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 299;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    /* Fixed mode */
+    &.corp-drawer-overlay-fixed {
+        position: fixed;
+    }
+
+    /* Transparent overlay */
+    &.corp-drawer-overlay-transparent {
+        background-color: transparent;
+    }
+}

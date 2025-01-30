@@ -1,0 +1,23 @@
+# ignored options for 'db2'
+# --memory-swappiness=0
+version: "3"
+services:
+  db2:
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    stdin_open: true
+    tty: true
+    container_name: db2-liberty
+    environment:
+      - AUTOCONFIG=false
+      - ARCHIVE_LOGS=false
+      - LICENSE=accept
+      - DBNAME=test
+      - DB2INSTANCE=db2inst1
+      - DB2INST1_PASSWORD=foobar1234
+    ports:
+      - "50000:50000"
+    privileged: true
+    image: ibmcom/db2:latest

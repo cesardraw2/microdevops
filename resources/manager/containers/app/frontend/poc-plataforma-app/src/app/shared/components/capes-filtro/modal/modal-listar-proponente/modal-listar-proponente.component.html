@@ -1,0 +1,39 @@
+<sc-modal headerTitle="{{'CAPES_FILTRO.MODAL_PROPONENTES.HEADER_TITLE' | translate }}" width="small">
+  <div class="ss-grid justify-content-center">
+    <div class="col-12 ss-table ss-table-striped">
+      <table style="width: 98%; margin: 8px auto;">
+          <thead>
+              <tr>
+                <th>{{'CAPES_FILTRO.MODAL_PROPONENTES.COL_NOME_RAZAO_SOCIAL' | translate }}</th>
+                <th>{{'CAPES_FILTRO.MODAL_PROPONENTES.COL_CPF_CNPJ' | translate }}</th>
+                <th *ngIf="!isPJ">{{'CAPES_FILTRO.MODAL_PROPONENTES.COL_NOME_SOCIAL' | translate }}</th>
+                <th>{{'CAPES_FILTRO.MODAL_PROPONENTES.COL_NOME_TRATAMENTO_FANTASIA' | translate }}</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr style="color: black; cursor: pointer;" (click)="pessoaSelecionada(pessoa)" *ngFor="let pessoa of dadosPessoas">
+                  <td data-label="nomeCompleto">{{pessoa.nomePessoa}}</td>
+                  <td data-label="cpfCnpj">{{pessoa.cpfCnpj | cpfOuCnpj}}</td>
+                  <td *ngIf="!isPJ" data-label="nomeSocial">{{pessoa.nomeSocial}}</td>
+                  <td data-label="apelido">{{pessoa.nomeApelido}}</td>
+              </tr>
+          </tbody>
+      </table>
+      <sc-pagination
+        style="margin-bottom: 10px;"
+        [totalItems]="totalItems"
+        [itemsPerPage]="itemsPerPage"
+        [directionLinks]="directionLinks"
+        [boundaryLinks]="boundaryLinks"
+        [iconLinks]="iconLinks"
+        (pageChanged)="onPageChanged($event)"
+        (numPages)="onTotalPagesChanged($event)"
+        (paginatedData)="onPaginatedData($event)"
+      >
+      </sc-pagination>
+    </div>
+  </div>
+
+  <!-- <div class="ss-modal-footer">
+  </div> -->
+</sc-modal>

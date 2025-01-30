@@ -1,0 +1,73 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+
+        <div class="h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
+            <!-- app.component.html -->
+            <div class="flex flex-col h-screen">
+                <header class="flex flex-row items-center  bg-gray-800 text-white p-4" >
+                    <img class="w-30" src="assets/images/logo/logo-text-on-dark.svg" alt="logo">
+                    <h1>MicroDevopsApp v1.0</h1>
+                </header>
+                <main class="flex flex-1">
+                    <div class="flex-1 p-4">
+                        <app-dashboard (doViewInfo)="viewInfo($event)" (doOpenConfiguration)="openConfiguration($event)">
+                        </app-dashboard>
+                    </div>
+                </main>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="relative flex overflow-hidden border mt-8 min-h-80">
+    <corp-drawer
+            class="w-screen min-w-screen sm:w-100 sm:min-w-100 z-999"
+            [fixed]="true"
+            [mode]="'over'"
+            [name]="'propertiesDevopsDrawer'"
+            [position]="'right'"
+            [opened]="drawerOpened"
+            (openedChanged)="drawerOpenedChanged($event)"
+            #propertiesDevopsDrawer>
+        <div class="flex flex-col h-screen">
+            <header class="flex flex-row items-center  bg-gray-800 text-white p-4" >
+                <h1>Tools</h1>
+                <button
+                        class="ml-auto"
+                        mat-icon-button
+                        (click)="propertiesDevopsDrawer.close()">
+                    <mat-icon
+                            class="text-current"
+                            [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+                </button>
+            </header>
+            <div class="p-2">
+                <mat-tab-group [(selectedIndex)]="selectedIndex" mat-stretch-tabs="false">
+                    <mat-tab label="Log">
+                        <app-log></app-log>
+                    </mat-tab>
+                    <mat-tab label="Info">
+                        <code>
+                            <pre>
+                                {{serviceInfo | json}}
+                            </pre>
+                        </code>
+                    </mat-tab>
+                    <mat-tab label="Configuration">
+                        <code>
+                                    <pre>
+                                        {{serviceConfig | json}}
+                                    </pre>
+                        </code>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+    </corp-drawer>
+</div>

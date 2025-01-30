@@ -1,0 +1,10 @@
+.app-top-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color:white;
+}
+
+.app-size-icon {
+  font-size:30px;
+}

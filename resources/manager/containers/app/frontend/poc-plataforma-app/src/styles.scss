@@ -1,0 +1,148 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/cdk/overlay-prebuilt.css';
+@import "~ngx-tabset/ngx-tabset";
+@import "./assets/styles/sgr.popover.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+.hint {
+  left: 2px;
+  right: auto;
+  font-size: 12px;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  color: red;
+}
+
+.badge-verde-claro {
+  background-color: #00AE9D;
+}
+
+.badge {
+  color: #fff;
+  display: flex;
+  text-align: center;
+  border-radius: 90%;
+  margin: 10px 0px 10px 0px;
+  height: 50px;
+  width: 50px;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.sc-alert {
+    z-index: 2000;
+    .alert {
+        border-radius: 6px;
+    }
+    .icon {
+        float: left;
+        margin-top: -1px;
+        font-size: 25px;
+        color: white;
+    }
+    p {
+        margin-left: 32px;
+        color: white;
+    }
+    .ss-btnclose {
+        color: white;
+    }
+}
+
+.theme-datapick .bs-datepicker-head {
+  background-color: #01ae9d; }
+
+.theme-datapick .selected{
+  background-color: #01ae9d;
+}
+
+.borda-fundo-branco{
+  background-color: white;
+  padding:15px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ss-select:after {
+  top: inherit !important;
+}
+
+.sc-overlay-container{
+  z-index: 2000;
+}
+.openAnimationAlert{
+  animation-name: opacifyAlert;
+  animation-duration: 0.6s;
+}
+
+
+@keyframes opacifyAlert {
+  from {opacity: 0.1;}
+  to {opacity: 1;}
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.limitTextDiv {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+
+.ng-select.ng-invalid.ng-touched > .ng-select-container {
+  border-color: #f50000 !important;
+}
+
+.ng-select.desabilitar-arrow .ng-arrow-wrapper .ng-arrow {
+  display: none;
+}
+
+.my-pagination .ngx-pagination .current {
+  background: #01ae9d;
+}
+.my-pagination .ngx-pagination .show-for-sr {
+  position: fixed !important;
+}
+
+.quebra-linha{
+  white-space: break-spaces !important;
+}
+
+.cor-verde-escuro{
+  color: #00AE9D;
+}
+
+.badge-verde-escuro {
+  background-color: #003641;
+}
+
+.badge-roxo {
+  background-color: #49479D;
+}
+
+.badge-verde-claro {
+  background-color: #00AE9D;
+}
+
+.badge {
+  color: #fff;
+  display: inline-block;
+  padding-left: 6px;
+  padding-right: 6px;
+  text-align: center;
+  border-radius: 50%;
+  margin: 10px;
+}

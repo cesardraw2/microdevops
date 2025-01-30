@@ -1,0 +1,15 @@
+::ng-deep {
+  #dialogo>#modal>.ss-modal-small-width {
+    width: 20% !important;
+  }
+
+  #dialogo>#modal>.ss-modal-small-width>.ss-modal-header{
+    padding: 8px !important;
+    padding-bottom: 4px !important;
+  }
+
+  #dialogo>#modal>.ss-modal-small-width>.ss-modal-body{
+    padding: 8px !important;
+    padding-bottom: 4px !important;
+  }
+}

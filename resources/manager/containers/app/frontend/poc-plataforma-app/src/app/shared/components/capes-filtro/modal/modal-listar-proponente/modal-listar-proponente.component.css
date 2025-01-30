@@ -1,0 +1,74 @@
+.ss-modal-body{
+  font-size: 16px;
+  text-align: justify;
+}
+
+.botaoDiv {
+  width: 100%;
+  align-items: end;
+  justify-content: end;
+  display: grid;
+  padding: 20px;
+}
+
+.botaoFechar {
+  border: 1px solid #E0E0E0;
+  border-color: #00D55C;
+  color: #000;
+  width: 100px;
+  background-color: #00D55C;
+}
+
+.btnConfirmar {
+  border: 1px solid #E0E0E0;
+  border-color: #00D55C;
+  color: #fff;
+  width: 100px;
+  background-color: #00D55C;
+}
+
+::ng-deep h3 {
+font-size: 20px;
+}
+
+::ng-deep p {
+margin-bottom: 7px;
+margin-top: 0px;
+line-height: 20px;
+}
+.btn {
+margin: auto;
+padding: 20px;
+width: 200px;
+}
+.success {
+border: 2px solid #E0E0E0;
+border-color: #00AE9D;
+color: #00AE9D;
+}
+
+.success:hover {
+background-color: #00AE9D;
+color: white;
+}
+
+@media (max-width: 768px) {
+  ::ng-deep .ss-modal-small-width {
+    width: 95% !important;
+  }
+  ::ng-deep .ss-table table thead tr th,
+  ::ng-deep .ss-table table tbody tr td
+  {
+    font-size: 12px !important;
+    text-align: left;
+  }
+  ::ng-deep .ss-table table thead tr th
+  {
+    display: block;
+  }
+  ::ng-deep .ss-table table tbody tr td
+  {
+    display: flex;
+    align-items: flex-end;
+  }
+}

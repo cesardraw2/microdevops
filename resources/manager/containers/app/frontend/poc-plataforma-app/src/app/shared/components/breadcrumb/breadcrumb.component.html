@@ -1,0 +1,14 @@
+<!-- {{ breadcrumbs | json }} -->
+<div #template>
+  <ng-content></ng-content>
+</div>
+<div *ngIf="template.children.length == 0">
+  <h6 class="titulo">{{title}}</h6>
+  <ul class="ss-breadcrumb">
+    <li *ngFor="let breadcrumb of breadcrumbs" class="ss-breadcrumb-item">
+      <a routerLink="{{breadcrumb.url}}">
+        <div class="ajustar-texto">{{ breadcrumb.label }}</div>
+      </a>
+    </li>
+  </ul>
+</div>

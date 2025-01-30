@@ -1,0 +1,27 @@
+<sc-modal headerTitle="Aten&#231;&#227;o" width="small">
+  <div class="content" style="margin-left: 10px;">
+    <h5>
+      <div *ngIf="data?.existeVinculo">
+        A instituição já está associada a outra corretora. Tem certeza de que deseja prosseguir com a alteração?
+      </div>
+      <div *ngIf="!data?.existeVinculo">
+        {{ 'LABEL.CORRETORAS.MODAL_NOME_CORRETORA.EXISTE_VINCULO' | translate }}
+      </div>
+    </h5>
+    <h5>
+      {{data.nomeCorretora}}
+    </h5>
+  </div>
+  <div class="ss-modal-footer">
+    <div class="ss-grid">
+      <div class="col-offset-start-4 col-offset-end-1">
+        <sc-button text="{{ 'LABEL.CORRETORAS.MODAL_NOME_CORRETORA.BTN.CONFIRMAR' | translate }}" color="success" (click)="adicionarVinculo()" [outline]="false">
+        </sc-button>
+      </div>
+      <div class="col-offset-start-6 col-offset-end-1">
+        <sc-button text="{{ 'LABEL.CORRETORAS.MODAL_NOME_CORRETORA.BTN.CANCELAR' | translate }}" color="danger" (click)="fechar()" [outline]="true" >
+        </sc-button>
+      </div>
+    </div>
+  </div>
+</sc-modal>

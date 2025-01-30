@@ -1,0 +1,20 @@
+
+$automatico: auto;
+
+.button-center{
+  height:50px;
+  width:120px;
+  margin:$automatico;
+  top:10px;
+}
+.ss-min-height {
+  height: 300px;
+}
+
+.caixa-contorno {
+  border: 1px solid#00ae9d;
+  padding: 20px 15px 20px 15px;
+  margin: auto;
+  width:500px;
+  border-radius: 3px;
+}

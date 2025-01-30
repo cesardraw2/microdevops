@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  plataforma:
+    container_name: "poc-plataforma-frontend"
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+#    volumes:
+#      - ../src:/app/src
+    ports:
+      - "4300:4200"
+    command: ["npm", "start"]
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=1000

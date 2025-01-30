@@ -1,0 +1,13 @@
+<div class="caixa-seguros">
+  <div class="caixa-seguros-top">
+    <!-- <i class="mdi mdi-heart ico-seguro-card"></i> -->
+    <i  [class]="icon"></i>
+  </div>
+  <div style="padding:10px; height: 200px;">
+    <label class="titulo-seguro">{{titulo}}</label>
+    <p class="texto-explicativo">{{descricao}}</p>
+  </div>
+  <div class="botaoAcessarDiv">
+    <button class="ss-btn botaoAcessar" (click)="executarBotao()" type="button">Acessar</button>
+  </div>
+</div>

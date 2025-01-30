@@ -1,0 +1,7 @@
+<div class="col-6-m" *ngIf="user && role">
+    <div class="ss-navbar-user">
+        <a style="float: left;padding-right: 10px;" class="ss-navbar-item ss-navbar-user-btn"><img style="border-radius: 50%;width: 55px;height: 55px;" class="ss-user-img" src={{image}}></a>
+    </div>
+    <h6 style="margin-bottom: -12px;font-size: 15px;">{{user.userName}}</h6>
+    <p style="font-size: 12px;">{{role.roleName}}</p>
+</div>

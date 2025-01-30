@@ -1,0 +1,17 @@
+.separador {
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+
+.espacamento{
+  margin-top: 40px;
+}
+
+table tbody tr td {
+  text-align: center;
+}
+
+table thead tr th{
+  text-align: center;
+  font-weight: bold;
+}

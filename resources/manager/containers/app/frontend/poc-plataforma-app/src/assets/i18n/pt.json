@@ -1,0 +1,179 @@
+{
+  "LABEL": {
+    "CORRETORAS": {
+      "FILTRO": {
+        "LABEL": "Filtrar por",
+        "CAMPOS": {
+          "NOME": {
+            "LABEL": "Nome",
+            "PLACEHOLDER": "Digite o Nome"
+          },
+          "CODIGO_SUSEP": {
+            "LABEL": "Código SUSEP",
+            "PLACEHOLDER": "Digite o Número"
+          }
+        },
+        "BTN": {
+          "CRIAR_VINCULO": "Criar Vínculo de Corretora"
+        }
+      },
+      "TABELA": {
+        "HEADER": {
+          "CORRETORA": "Corretora",
+          "CENTRAL_COOPERATIVA": "Central/Cooperativa",
+          "CODIGO_SUSEP": "Código SUSEP",
+          "EXCLUIR": "Excluir"
+        }
+      },
+      "MODAL_INCLUSAO_VINCULO": {
+        "CAMPOS": {
+          "SELECT": {
+            "LABEL": "Selecione"
+          },
+          "INSTITUICAO": {
+            "LABEL": "Instituição"
+          },
+          "CENTRAL": {
+            "LABEL": "Central"
+          },
+          "COOPERATIVA": {
+            "LABEL": "Cooperativa"
+          },
+          "COD_SUSEP_CNPJ": {
+            "LABEL": "Código SUSEP/CNPJ"
+          }
+        },
+        "BTN": {
+          "ADICIONAR": "Adicionar",
+          "CANCELAR": "Cancelar"
+        }
+      },
+      "MODAL_NOME_CORRETORA": {
+        "EXISTE_VINCULO": "Corretora a ser vinculada: ",
+        "BTN": {
+          "CONFIRMAR": "Confirmar",
+          "CANCELAR": "Cancelar"
+        }
+      },
+      "MODAL_EXCLUSAO_CORRETORA": {
+        "BTN": {
+          "CONFIRMAR": "Confirmar",
+          "CANCELAR": "Cancelar"
+        }
+      }
+    }
+  },
+  "TITULOS": {
+    "CORRETORAS": {
+      "TITULO": "Corretoras",
+      "MODAL_INCLUSAO_VINCULO": {
+        "TITULO": "Criar vínculo de corretora"
+      },
+      "MODAL_EXCLUSAO_CORRETORA": {
+        "TITULO": "Atenção"
+      }
+    }
+  },
+  "RELATORIOS": {
+    "TITULO": {
+      "CELULAR": "Vendas Seguro Celular",
+      "TRANSACOES": "Vendas Seguro Transações"
+    },
+    "LABELS": {
+      "CENTRAL": "Central",
+      "COOP": "Cooperativa",
+      "PA": "Ponto de Atendimento (PA)",
+      "IDP": "Início do período",
+      "FDP": "Fim do período",
+      "PLACEHOLDERCENT": "Selecione uma Central",
+      "PLACEHOLDERCOOP": "Selecione uma Cooperativa",
+      "TABELA": {
+        "CTL": "Central",
+        "COOP": "Cooperativa",
+        "NOME": "Nome",
+        "CPF": "CPF",
+        "DATA": "Data",
+        "VALOR": "Valor",
+        "FORMP": "Forma. pag.",
+        "CANAL": "Canal",
+        "SITUACAO": "Situação"
+      }
+    },
+    "BTN": {
+      "CONSULTAR": "Consultar",
+      "NCONSULTAR": "Nova consulta",
+      "GRCSV": "Gerar CSV",
+      "VLR": "Voltar"
+    }
+  },
+  "MENSAGEM": {
+    "MSG_HELLO": "Olá {{name}}!",
+    "CORRETORAS": {
+      "CORRETORA_NAO_LOCALIZADA": "Corretora pesquisada não localizada.",
+      "MODAL_EXCLUSAO_CORRETORA": "Tem certeza que deseja excluir o vínculo associado?"
+    },
+    "FILTRO_NENHUM_REGISTRO_ENCONTRADO": "Para o filtro informado, não foi encontrado nenhum registro."
+  },
+  "VALIDACAO": {
+    "ERROR_DATA_INICIAL_MAIOR_DATA_FINAL": "Data inicial deve ser menor que data final.",
+    "ERROR_DATA_FINAL_MENOR_DATA_FINAL": "Data final deve ser maior que data inicial."
+  },
+  "ENUMS": {
+    "TIPO_DOCUMENTO_FATURAMENTO": {
+      "ARQUIVO_TXT": "Arquivo TXT",
+      "ARQUIVO_EXTRA_SISTEMA": "Arquivo extra-sistema",
+      "OUTRAS_DOCUMENTACOES": "Outras documentações",
+      "ARQUIVO_FATURA": "Arquivo fatura"
+    },
+    "TIPO_STATUS_FATURAMENTO": {
+      "ARQUIVO_ENVIADO": "Arquivo Enviado",
+      "EM_PROCESSAMENTO": "Em Processamento",
+      "FATURA_DISPONIVEL": "Fatura Disponivel",
+      "FATURA_CONTESTADA": "Fatura Contestada",
+      "FATURAMENTO_CANCELADO": "Faturamento Cancelado",
+      "FATURAMENTO_CONCLUIDO": "Faturamento Concluido"
+    },
+    "TIPO_SITUACAO_PROPOSTA_RELATORIO": {
+      "EM_ANALISE": "Em Análise",
+      "PENDENTE": "Pendente",
+      "RECUSADA": "Recusada",
+      "CANCELADA": "Cancelada",
+      "IMPLANTADA": "Implantada",
+      "AGUARDANDO_PROCESSAMENTO": "Aguardando Processamento"
+    },
+    "TIPO_CANAIS_PROPOSTA_RELATORIO": {
+      "SISBR": "SISBR",
+      "SICOOBNET": "SICOOBNET",
+      "SIGAS": "SIGAS"
+    },
+    "TIPO_SITUACAO_PLURIANUAL_RELATORIO": {
+      "AGUARDANDO_PAGAMENTO": "Aguardando Pagamento",
+      "PAGAMENTO_REALIZADO": "Pagamento Realizado",
+      "PAGAMENTO_NAO_REALIZADO": "Pagamento Não Realizado"
+    }
+  },
+  "CAPES_FILTRO": {
+    "FILTRO_LABEL": {
+      "CPFCNPJ": "CPF / CNPJ",
+      "NOMERAZAOSOCIAL": "Nome / Razão Social",
+      "APELIDO": "Nome Tratamento / Fantasia"
+    },
+    "BTN_PESQUISA": "Pesquisar",
+    "PLACEHOLDER": {
+      "CPFCNPJ": "Digite o CPF ou CNPJ",
+      "NOMERAZAOSOCIAL": "Digite o Nome ou Razão Social",
+      "APELIDO": "Digite o Nome de Tratamento ou Fantasia"
+    },
+    "MODAL_PROPONENTES": {
+      "HEADER_TITLE": "Selecione um cooperado",
+      "COL_NOME_RAZAO_SOCIAL": "Nome / Razão Social",
+      "COL_CPF_CNPJ": "CPF / CNPJ",
+      "COL_NOME_SOCIAL": "Nome Social",
+      "COL_NOME_TRATAMENTO_FANTASIA": "Nome Tratamento / Fantasia"
+    }
+  },
+  "PAGINACAO": {
+    "ANTERIOR": "Anterior",
+    "PROXIMO": "Próximo"
+  }
+}

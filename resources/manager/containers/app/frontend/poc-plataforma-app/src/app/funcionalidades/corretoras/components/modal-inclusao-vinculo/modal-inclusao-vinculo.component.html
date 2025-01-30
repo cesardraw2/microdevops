@@ -1,0 +1,63 @@
+<sc-modal headerTitle="{{ 'TITULOS.CORRETORAS.MODAL_INCLUSAO_VINCULO.TITULO' | translate }}" width="small">
+  <div class="content">
+    <form [formGroup]="form">
+      <div class="ss-grid">
+        <div class="col-12">
+          <sc-form-field>
+            <select scLabel="{{ 'LABEL.CORRETORAS.MODAL_INCLUSAO_VINCULO.CAMPOS.INSTITUICAO.LABEL' | translate }}" id="numeroInstituicao" formControlName="instituicao">
+                <option value="{{null}}" [selected]="true">
+                  {{ 'LABEL.CORRETORAS.MODAL_INCLUSAO_VINCULO.CAMPOS.SELECT.LABEL' | translate }}
+                </option>
+                <option *ngFor="let instituicao of (instituicoes$ | async)" [value]="instituicao?.idInstituicao">
+                    {{ instituicao?.idInstituicao }} - {{ instituicao?.nome }}
+                </option>
+            </select>
+          </sc-form-field>
+        </div>
+        <div class="col-12">
+          <sc-form-field>
+            <select scLabel="{{ 'LABEL.CORRETORAS.MODAL_INCLUSAO_VINCULO.CAMPOS.CENTRAL.LABEL' | translate }}" id="numeroCentral" formControlName="central" (change)="buscarCooperativasPorIdCentral()">
+                <option value="{{null}}" [selected]="true">
+                  {{ 'LABEL.CORRETORAS.MODAL_INCLUSAO_VINCULO.CAMPOS.SELECT.LABEL' | translate }}
+                </option>
+                <option *ngFor="let central of (centrais$ | async)" [value]="central?.idInstituicao">
+                    {{ central?.numeroCooperativa }} - {{ central?.nome }}
+                </option>
+            </select>
+            <sc-msg-erro [control]="form.get('central')"></sc-msg-erro>
+          </sc-form-field>
+        </div>
+        <div class="col-12">
+          <sc-form-field>
+            <select scLabel="{{ 'LABEL.CORRETORAS.MODAL_INCLUSAO_VINCULO.CAMPOS.COOPERATIVA.LABEL' | translate }}" id="numerocooperativa" formControlName="cooperativa">
+              <option value="{{null}}" [selected]="true">
+                {{ 'LABEL.CORRETORAS.MODAL_INCLUSAO_VINCULO.CAMPOS.SELECT.LABEL' | translate }}
+              </option>
+              <option *ngFor="let cooperativa of (cooperativas$ | async)" [value]="cooperativa?.idInstituicao">
+                  {{ cooperativa?.numeroCooperativa }} - {{ cooperativa?.nome }}
+              </option>
+          </select>
+          </sc-form-field>
+        </div>
+        <div class="col-12">
+          <sc-form-field>
+            <input scInput type="text" scLabel="{{ 'LABEL.CORRETORAS.MODAL_INCLUSAO_VINCULO.CAMPOS.COD_SUSEP_CNPJ.LABEL' | translate }}" formControlName="numeroSusep" maxlength="14" numbersOnly/>
+            <sc-msg-erro [control]="form.get('numeroSusep')"></sc-msg-erro>
+          </sc-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="ss-modal-footer">
+    <div class="ss-grid">
+      <div class="col-offset-start-4 col-offset-end-1">
+        <sc-button text="{{ 'LABEL.CORRETORAS.MODAL_INCLUSAO_VINCULO.BTN.ADICIONAR' | translate }}" color="success" [outline]="false" (click)="adicionarVinculo()">
+        </sc-button>
+      </div>
+      <div class="col-offset-start-6 col-offset-end-1">
+        <sc-button text="{{ 'LABEL.CORRETORAS.MODAL_INCLUSAO_VINCULO.BTN.CANCELAR' | translate }}"  [outline]="false" (click)="fechar()">
+        </sc-button>
+      </div>
+    </div>
+  </div>
+</sc-modal>

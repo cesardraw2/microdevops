@@ -1,0 +1,71 @@
+<sc-modal id="modal-editar-devolucao" headerTitle="Acompanhar dados da Devolução" width="small">
+  <div class="ss-modal-body">
+    <div class="ss-grid" style="margin: 20px;">
+      <div class="col-5">
+        <label><h6>CPF/CNPJ: </h6></label> {{devolucao.cpfCnpj}}
+      </div>
+      <div class="col-7">
+        <label><h6>Nome/Razão Social: </h6></label> {{devolucao.nomeRazaoSocial}}
+      </div>
+    </div>
+    <div class="ss-grid" style="margin: 20px;">
+      <div class="col-5">
+        <label><h6>Numero do contrato: </h6></label> {{devolucao.numeroContrato}}
+      </div>
+      <div class="col-5">
+        <label><h6>Produto:</h6> </label> {{devolucao.produto}}
+      </div>
+    </div>
+    <div class="ss-grid" style="margin: 20px;">
+      <div class="col-5">
+        <label><h6> Número cooperativa para pagamento: </h6></label> {{devolucao.numeroContaCorrenteCooperativa}}
+      </div>
+      <div class="col-5">
+        <label><h6>Conta corrente: </h6></label> {{devolucao.numeroContaCorrente}}
+      </div>
+    </div>
+
+    <div class="ss-table ss-table-sortable" style="margin: 20px;">
+      <table id="minhaTabela">
+        <thead>
+        <tr>
+          <th>Nome</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let arquivo of devolucao.arquivos">
+            <td><p class="teste">{{ arquivo.nomeArquivo }}</p></td>
+            <td data-label="Ações" class="ss-table-actions">
+              <p class="ss-more"><i class="material-icons">more_vert</i>
+                <span class="ss-moretext ss-more-left">
+                    <a class="ss-more-item" ><i class="material-icons" style="padding-right: 5px">find_in_page</i>Visualizar</a>
+                  </span>
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin: 20px;">
+      <form [formGroup]="form">
+        <div class="ss-form-group">
+          <sc-form-field>
+            <label for="exampleTextarea">Justificativa</label>
+            <textarea name="justificativa" scInput id="justificativa" formControlName="justificativa" style="width: 99%; margin-left: 5px;" rows="4" required maxlength="2048" minlength="10"></textarea>
+          </sc-form-field>
+        </div>
+      </form>
+    </div>
+    <div class="ss-modal-footer">
+      <div class="ss-group-inline">
+        <button (click)="salvarEtapa('CANCELADO')" class="ss-btn ss-btn-primary" id="cancelar" *ngxPermissionsOnly="'BTNCANCELARDEVOLUCAO'">Cancelar</button>
+        <button (click)="salvarEtapa('ENCAMINHADO_SOLICITANTE')" class="ss-btn ss-btn-primary" id="devolver" *ngxPermissionsOnly="'BTNDEVOLVERSOLICITANTEDEVOLUCAO'">Devolver ao Solicitante</button>
+        <button (click)="salvarEtapa('ENCAMINHAR_PAGAMENTO')" class="ss-btn ss-btn-primary" id="pagamento" *ngxPermissionsOnly="'BTNENCAMINHARPAGAMENTODEVOLUCAO'">Encaminhar para Pagamento</button>
+        <button (click)="salvarEtapa('CONCLUIR')"class="ss-btn ss-btn-primary" id="concluir" *ngxPermissionsOnly="'BTNCONCLUIRDEVOLUCAO'">Concluir Devolução</button>
+        <button (click)="salvarEtapa('ENCAMINHAR_ANALISE')"class="ss-btn ss-btn-primary" id="analise" *ngxPermissionsOnly="'BTNENCAMINHARANALISEDEVOLUCAO'">Encaminhar para Análise</button>
+        <a class="ss-btn ss-btn-outline-danger" (click)="close(true)">Fechar</a>
+      </div>
+    </div>
+  </div>
+</sc-modal>

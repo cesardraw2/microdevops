@@ -1,0 +1,7 @@
+<div class="borda-fundo-branco">
+  <sc-tab-panel>
+    <sc-tab *ngFor="let produto of produtos; let i = index" [title]="produto">
+      <app-filtro-devolucao *ngIf="produtos.indexOf('Prestamista') == i"></app-filtro-devolucao>
+    </sc-tab>
+  </sc-tab-panel>
+</div>

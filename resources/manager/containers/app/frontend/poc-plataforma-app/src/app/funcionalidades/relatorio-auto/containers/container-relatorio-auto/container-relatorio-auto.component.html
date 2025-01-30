@@ -1,0 +1,168 @@
+<div class="borda-fundo-branco">
+  <section>
+    <form [formGroup]="formRelatorioAuto" autocomplete="off"
+          (ngSubmit)="consultarRelatorio(instituicaoForm.formulario)">
+      <div class="ss-grid">
+        <div class="col-12">
+          <!--                  <h5>Relatório de Produção Plurianual</h5>-->
+          <h5>Situação Pagamento Auto Financiado</h5>
+        </div>
+        <div class="col-12">
+          <sc-instituicao formControlName="instituicao"
+                          [filterCentral]="verificaBancoob()"
+                          [labelCentral]="'Central'"
+                          [coopRequerid]="false"
+                          #instituicaoForm
+          ></sc-instituicao>
+        </div>
+
+        <div class="col-12 ss-grid">
+          <div class="col-6">
+            <sc-form-field>
+              <input scInput scLabel="Ponto de Atendimento(PA)" formControlName="pontoAtendimento" type="number" min="0"
+                     max="9999" class="input-pa" oninput="validity.valid||(value=value.replace(/\D+/g, ''))"/>
+              <sc-msg-erro [control]="formRelatorioAuto.get('pontoAtendimento')"></sc-msg-erro>
+            </sc-form-field>
+          </div>
+
+          <div class="col-4">
+            <sc-form-field>
+              <div class="ss-grid">
+                <div class="col-5">
+                  <input scInput
+                         scLabel="Período"
+                         formControlName="dataInicio"
+                         bsDatepicker
+                         [placeholder]="'DD/MM/YYYY'"
+                         [bsConfig]="{minMode: 'day',dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-datapick'}"
+                         (onHidden)="atualizaValidacaoData()"
+                         (change)="atualizaValidacaoData()"
+
+                  />
+                  <!--
+                         [maxDate]="dataFimCalendario"
+                         [minDate]="dataInicioCalendario"
+                   -->
+                  <sc-msg-erro [control]="formRelatorioAuto.get('dataInicio')"></sc-msg-erro>
+                </div>
+                <p class="col-2" style="text-align: center; vertical-align: middle;">
+                  à
+                </p>
+                <div class="col-5">
+                  <input scInput
+                         scLabel="data fim"
+                         formControlName="dataFim"
+                         bsDatepicker
+                         [placeholder]="'DD/MM/YYYY'"
+                         [bsConfig]="{minMode: 'day',dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-datapick'}"
+                         (onHidden)="atualizaValidacaoData()"
+                         (change)="atualizaValidacaoData()"
+
+                  />
+                  <!--
+                       [maxDate]="dataFimCalendario"
+                       [minDate]="dataInicioCalendario"
+                 -->
+                  <sc-msg-erro [control]="formRelatorioAuto.get('dataFim')"></sc-msg-erro>
+                </div>
+              </div>
+            </sc-form-field>
+          </div>
+          <div class="col-2">
+            <sc-form-field>
+              <select scInput scLabel="Situação" formControlName="situacao">
+                <option value="">Selecione</option>
+                <option *ngFor="let situacao of situacaoPlurianual"
+                        [value]=situacao>{{situacao | enum:'TIPO_SITUACAO_PLURIANUAL_RELATORIO'}}</option>
+              </select>
+            </sc-form-field>
+          </div>
+        </div>
+        <!--                <div class="col-4"></div>-->
+        <div class="col-1">
+          <button
+            class="ss-btn ss-btn-primary ss-btn-icon-left"
+            type="submit"
+            [disabled]="!formRelatorioAuto.valid"
+          >
+            <i class="mdi mdi-search-web material-icons ss-icon"></i>Consultar
+          </button>
+        </div>
+        <div class="col-1">
+          <button
+            class="ss-btn ss-btn-primary ss-btn-icon-left"
+            type="button"
+            [disabled]="resultadoConsulta.length <= 0"
+            (click)="gerarCSV()"
+          >
+            <i class="mdi mdi-file-download material-icons ss-icon"></i>Gerar CSV
+          </button>
+        </div>
+
+        <!--
+        TODO: Implementar a função de Limpar dados da consulta
+        <div class="col-1">
+           <button
+             class="ss-btn ss-btn-warning ss-btn-icon-left"
+             type="button"
+             [disabled]="!formRelatorioAuto.valid"
+           >
+             <i class="mdi mdi-search-web material-icons ss-icon"></i>Limpar</button>
+         </div>-->
+
+        <!--                <div class="col-12">-->
+        <!--      F            <div class="col-1">-->
+        <!--                    <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="submit"><i class="mdi mdi-search-web material-icons ss-icon"></i>Consultar</button>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+
+        <!--                <div class="col-1">-->
+        <!--                  <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="button" (click)="teste()"><i class="mdi mdi-file-download material-icons ss-icon"></i>Gerar CSV</button>-->
+        <!--                </div>-->
+      </div>
+    </form>
+
+    <div *ngIf="resultadoConsulta.length > 0">
+      <br>
+      <div class="ss-table ss-table-sortable">
+        <table id="minhaTabela">
+          <thead>
+          <tr>
+            <th>Data Operação</th>
+            <th>Prazo</th>
+            <th>Proposta Seg.</th>
+            <th>Segurado</th>
+            <th>CPF</th>
+            <th>Nº do Boleto</th>
+            <th>Valor Prêmio</th>
+            <th>Data Pag.</th>
+            <th>Situação</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let dado of resultadoConsulta | paginate: { id: 'paginacao',
+                                                    itemsPerPage: qtdItensPorPagina,
+                                                    currentPage: paginacao.numeroPagina + 1,
+                                                    totalItems: paginacao.totalRegistros }">
+
+            <td class="col-1" style="margin-left: 30px">{{ dado.dataOperacao | date:'dd/MM/yyyy' }}</td>
+            <td class="col-1">{{ dado.prazo }}</td>
+            <td class="col-1">{{ dado.proposta }}</td>
+            <td class="col-1">{{ dado.segurado }}</td>
+            <td class="col-1">{{ dado.cpfCnpj | cpfOuCnpj}}</td>
+            <td class="col-1">{{identaNrBoleto(dado.boleto)}}</td>
+            <td class="col-1" style="margin-left: 40px;">{{ dado.valorPremio | currency:'BRL'}}</td>
+            <td class="col-1">{{ dado.dataPagamento | date:'dd/MM/yyyy' }}</td>
+            <td class="col-1"
+                style="margin-right: 4px;">{{ dado.situacao | enum: 'TIPO_SITUACAO_PLURIANUAL_RELATORIO' }}</td>
+          </tr>
+          </tbody>
+        </table>
+        <pagination-controls id="paginacao" [class.my-pagination]="true" maxSize="10" directionLinks="true"
+                             previousLabel="Anterior" nextLabel="Próximo"
+                             [responsive]="true" (pageChange)="pageChanged(instituicaoForm.formulario, $event)">
+        </pagination-controls>
+      </div>
+    </div>
+  </section>
+</div>

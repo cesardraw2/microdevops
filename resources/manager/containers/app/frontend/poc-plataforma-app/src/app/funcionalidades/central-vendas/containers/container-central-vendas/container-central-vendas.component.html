@@ -1,0 +1,20 @@
+<sc-card>
+  <sc-card-header class="ss-divider"><h5>Busca de proponente</h5></sc-card-header>
+  <sc-card-content>
+    <div class="ss-min-height">
+      <div class="caixa-contorno">
+          <sc-capes-cpf-cnpj labelCpfCnpj="CPF ou CNPJ"
+                             placeHolder="Informe CPF ou CNPJ sem pontos e traços e clique no ENTER"
+                             [isReadOnly]="!existeCorretora">
+          </sc-capes-cpf-cnpj>
+          <div class="col-1">
+            <button class="ss-btn ss-btn-primary button-center"
+                    [disabled]="!(proponente | async)?.idPessoa"
+                    [routerLink]="'seguros'"
+                    type="button">Continuar</button>
+          </div>
+      </div>
+    </div>
+  </sc-card-content>
+</sc-card>
+

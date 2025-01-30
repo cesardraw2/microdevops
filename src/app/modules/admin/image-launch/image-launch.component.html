@@ -1,0 +1,41 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="save()">
+        <mat-grid-list cols="4" rowHeight="2:1" >
+            <mat-grid-tile class="bold" [colspan]="1">
+                <label for="name" class="w-full text-left">Server Name:</label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3">
+                <input id="name" formControlName="name" type="text" class="w-full">
+            </mat-grid-tile>
+            <mat-grid-tile class="bold" [colspan]="1">
+                <label for="disk" class="w-full text-left">Disk:</label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3">
+                <input id="disk" formControlName="disk" type="text" class="w-full">
+            </mat-grid-tile>
+            <mat-grid-tile class="bold" [colspan]="1">
+                <label for="mem" class="w-full text-left">Memory:</label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3">
+                <input id="mem" formControlName="mem" type="text" class="w-full">
+            </mat-grid-tile>
+            <mat-grid-tile class="bold" [colspan]="1">
+                <label for="cpus" class="w-full text-left">CPUs:</label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3">
+                <input id="cpus" formControlName="cpus" type="number" class="w-full">
+            </mat-grid-tile>
+            <mat-grid-tile class="bold" [colspan]="1">
+                <label for="cloudInitPath" class="w-full text-left">Cloud Init Path:</label>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3">
+                <input id="cloudInitPath" formControlName="cloudInitPath" type="text" class="w-full">
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="4" class="items-center">
+                <button type="submit" class="bold">Salvar</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+    </form>
+
+</div>

@@ -1,0 +1,57 @@
+<!-- dashboard.component.html -->
+<div>
+    <mat-tab-group [(selectedIndex)]="selectedTabIndex">
+        <mat-tab label="Dashboard">
+            <div class="wp-100 bg-gray-200 p-4">
+                <app-environment-actions (devServerStateChange)="handleDevServerStatusChanged($event)"></app-environment-actions>
+                <app-service-actions></app-service-actions>
+            </div>
+            <div class="flex items-center gap-2">
+                <h2 class="text-xl font-semibold mb-4 mt-4">Proxy Local</h2>
+                <button mat-raised-button (click)="restartProxyServer()" class="mb-4 mt-4 start-0 w-2.5">
+                    <mat-icon>autorenew</mat-icon>
+                </button>
+            </div>
+            <div class="flex items-center gap-2" *ngIf="devServerIsRunning()===true">
+                <h2 class="text-xl font-semibold mb-4 mt-4">Containers</h2>
+                <button mat-raised-button (click)="getServices()" class="mb-4 mt-4 start-0 w-2.5">
+                    <mat-icon>autorenew</mat-icon>
+                </button>
+            </div>
+            <div class="grid grid-cols-4 gap-4" *ngIf="devServerIsRunning()===true">
+
+                <ng-container *ngFor="let item of serviceConteiners(); trackBy: trackByFn">
+                    <app-service-card [dataProvider]="item"
+                                      [devServerIsRunning]="devServerIsRunning"
+                                      (doCreate)="create($event)"
+                                      (doDestroy)="destroy($event)"
+                                      (doStop)="stop($event)"
+                                      (doStart)="start($event)"
+                                      (doReload)="restart($event)"
+                                      (doViewInBrowser)="viewInBrowser($event)"
+                                      (doOpenTerminal)="openTerminal($event)"
+                                      (doViewInfo)="viewInfo($event)"
+                                      (doOpenConfiguration)="openConfiguration($event)"
+
+                    >
+
+                    </app-service-card>
+                </ng-container>
+            </div>
+        </mat-tab>
+        <mat-tab label="WebBrowser">
+            <!-- Conteúdo do WebBrowser -->
+            <p transloco="welcome-back"></p>
+            <app-web-browser [url]="pageUrl"></app-web-browser>
+        </mat-tab>
+        <mat-tab label="Fluxo">
+            <app-bpmn type="modeler" #editor [url]="'assets/bpmn/microdevops.bpmn'"></app-bpmn>
+        </mat-tab>
+        <mat-tab label="Terminal">
+            <app-terminal [serviceName]="signal(selectedService?.serviceName)"></app-terminal>
+        </mat-tab>
+        <mat-tab label="Log">
+            <app-log></app-log>
+        </mat-tab>
+    </mat-tab-group>
+</div>

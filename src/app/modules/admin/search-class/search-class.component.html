@@ -1,0 +1,50 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+
+        <div class="h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
+            <!-- app.component.html -->
+            <div class="flex flex-col h-screen">
+                <header class="flex flex-row items-center  bg-gray-800 text-white p-4" >
+                    <img class="w-30" src="assets/images/logo/logo-text-on-dark.svg" alt="logo">
+                    <h1>MicroDevopsApp v1.0</h1>
+                </header>
+                <main class="flex flex-1">
+
+
+                    <div class="container mx-auto p-4">
+                        <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+                            <div class="mb-4">
+                                <mat-form-field appearance="fill" class="w-full">
+                                    <mat-label>Class Name</mat-label>
+                                    <input matInput formControlName="className" placeholder="org/hibernate/usertype/UserType.class">
+                                </mat-form-field>
+                            </div>
+                            <div class="mb-4">
+                                <mat-form-field appearance="fill" class="w-full">
+                                    <mat-label>Directory</mat-label>
+                                    <input matInput formControlName="dir" placeholder="/path/to/directory">
+                                </mat-form-field>
+                            </div>
+                            <div class="flex space-x-4">
+                                <button mat-raised-button color="primary" type="submit" [disabled]="searchForm.invalid">Pesquisar</button>
+                                <button mat-raised-button color="warn" type="button" (click)="onClear()">Limpar</button>
+                            </div>
+                        </form>
+
+                        <div class="mt-4">
+                            <mat-form-field appearance="fill" class="w-full">
+                                <mat-label>Resultado</mat-label>
+                                <textarea matInput readonly rows="10">{{ result }}</textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

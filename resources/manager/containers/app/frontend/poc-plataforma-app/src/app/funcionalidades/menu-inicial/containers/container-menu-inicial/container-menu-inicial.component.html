@@ -1,0 +1,33 @@
+<div class="ss-grid" *ngIf="isHome">
+    <div class="centralizar-card-externo col-6" style="margin-left: 15%;">
+      <div class="caixa" (click)="abrirQueroVender()">
+        <div class="caixa-top ct-vendas">
+          <img src="assets/images/ico-vendas.png" width=150 height=100>
+        </div>
+        <div class="legenda-caixa"><label class="legenda-caixa-label">CENTRAL DE VENDAS</label></div>
+        <div class="centralizar-titulo">
+          <div>
+            <label class="titulo t-vendas">Quero Proteger</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="centralizar-card-externo col-6" style="margin-right: 15%;">
+      <div class="caixa" (click)="abrirQueroGerenciar()">
+        <div class="caixa-top ct-gestao">
+          <img src="assets/images/ico-gestao.png" width=150 height=100>
+        </div>
+        <div class="legenda-caixa"><label class="legenda-caixa-label">CENTRAL DE GESTÃO</label></div>
+        <div class="centralizar-titulo">
+          <div>
+            <label class="titulo t-gestao">Quero Gerenciar</label>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="centralizar-card-externo" *ngIf="!isHome">
+  <app-quero-gerenciar (retornarMenuInicial)="retornarMenuInicial($event)" *ngIf="isGerencia"></app-quero-gerenciar>
+  <app-quero-vender (retornarMenuInicial)="retornarMenuInicial($event)" *ngIf="isVenda"></app-quero-vender>
+</div>

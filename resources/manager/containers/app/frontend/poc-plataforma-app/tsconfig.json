@@ -1,0 +1,43 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "src",
+    "module": "es2020",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "native": [
+        "dist/native"
+      ],
+      "native/*": [
+        "dist/native/*"
+      ],
+      "sicoob-components": [
+        "dist/sicoob-components"
+      ],
+      "sicoob-components/*": [
+        "dist/sicoob-components/*"
+      ],
+    "@app/*": ["app/*"],
+    "@core/*": ["app/core/*"],
+    "@shared/*": ["app/shared/*"],
+    "@reducers/*": ["app/reducers/*"],
+    "@funcionalidades/*": ["app/funcionalidades/*"],
+    "@env/*": ["environments/*"]
+
+    }
+  }
+}

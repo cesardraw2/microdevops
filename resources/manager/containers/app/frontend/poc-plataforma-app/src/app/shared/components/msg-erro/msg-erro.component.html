@@ -1,0 +1,5 @@
+<div class="hint" *ngIf="hasError()">
+  <span *ngFor="let msg of listaMensagemErrorsControl, let i = index" >
+    {{i == 0 ? msg: ', '+msg}}
+  </span>
+</div>

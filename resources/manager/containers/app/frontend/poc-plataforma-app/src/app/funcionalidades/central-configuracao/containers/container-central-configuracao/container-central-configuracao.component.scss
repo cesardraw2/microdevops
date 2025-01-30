@@ -1,0 +1,87 @@
+$ESPACO_15: 15px;
+$flex: flex;
+$normal: normal;
+$corPreta: #000000;
+$center: center;
+
+.card-inicial-lista-produto {
+  border: 1px solid rgba(0, 160, 145, 0.65);display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 24px 53px;
+  height: 123px;
+  width: 100%;
+  background-image: url('../../../../../assets/images/logo-sicoob-cabecalho.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-color: white;
+}
+
+.icon-user-lista-produto {
+  font-size: 60px;
+      margin-left: 13px;
+      margin-right: 35px;
+      vertical-align: bottom;
+      color: #5E6572
+}
+
+.texto-titulo-lista-produto {
+  font-family: Lato;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    color: #5E6572;
+}
+
+.texto-titulo-proponente-lista-produto {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  color: #5E6572;
+  margin-top: 9px;
+}
+
+.caixa-proca-proponente-lista-produto {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  height: 100px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.titulo-lista-produto {
+  font-family: Lato;
+  font-style: $normal;
+  font-weight: $normal;
+  font-size: 14px;
+  line-height: 150%;
+  margin:0 25px 0 25px;
+}
+
+.titulo {
+  font-family: Lato;
+  font-style: $normal;
+  font-weight: $normal;
+  font-size: 14px;
+  line-height: 150%;
+  margin:0 25px 0 25px;
+}
+
+.separador {
+  opacity: 0.5;
+  margin-bottom: 10px;
+}

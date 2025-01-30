@@ -1,0 +1,29 @@
+#minhaTabela th {
+  min-width: auto;
+}
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    #scrollable {
+      background: lightgray;
+      width: 300px;
+      height: 1000px;
+      max-height: 300px;
+      overflow-y: scroll;
+
+      div {
+        height: 5000px;
+      }
+    }
+
+  }
+}

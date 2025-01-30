@@ -1,0 +1,47 @@
+{
+    "compileOnSave": false,
+    "files": [
+        "src/main.ts",
+        "src/polyfills.ts",
+    ],
+    "include": [
+        "src/**/*.ts",
+        "src/corp",
+        "src/app/core/electron/types/typings.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ],
+    "compilerOptions": {
+        "paths": {
+            "corp/*": ["src/corp/*"],
+            "app/*": ["src/app/*"],
+            "@metrics-server": ["metrics-server.js"],
+            "@telemetry/*": ["src/app/telemetry/*"]
+        },
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "declaration": false,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "ES2022",
+        "module": "ES2022",
+        "useDefineForClassFields": false,
+        "lib": [
+            "ES2022",
+            "dom"
+        ],
+        "typeRoots": [
+            "node_modules/@types",
+            "src/bpmn-js.d.ts",
+            "src/app/core/electron/types"
+        ]
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false
+    }
+}

@@ -1,0 +1,15 @@
+services:
+  app001:
+    container_name: "app001-frontend"
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ..:/app
+      - ../app/node_modules
+    ports:
+      - "4400:4200"
+    command: npm start
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=1000

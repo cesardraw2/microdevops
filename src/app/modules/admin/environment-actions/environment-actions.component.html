@@ -1,0 +1,88 @@
+<!-- environment-actions.component.html -->
+        <h2 class="text-xl font-semibold mb-4">Servidores</h2>
+        <div class="w-300 min-w-300 max-w-300 relative flex self-start pt-2 pb-2 pl-5 pr-4 cursor-pointer overflow-hidden rounded-t-xl border border-b-0 bg-default"
+                matRipple
+                [matMenuTriggerFor]="projectsMenu">
+            <div class="flex items-center">
+                <div class="overflow-hidden">
+                    <div class="font-medium leading-6 truncate">{{selectedProjectName}}</div>
+                </div>
+                <div class="flex items-center justify-center pl-2">
+                    <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_mini:chevron-down'"></mat-icon>
+                </div>
+            </div>
+            <mat-menu
+                #projectsMenu="matMenu"  [xPosition]="'before'">
+                <button
+                        mat-menu-item
+                        (click)="onMenuItemClick('dev-server')"
+                        [class.selected]="selectedProjectName === 'dev-server'">dev-server
+                </button>
+                <button
+                        mat-menu-item
+                        (click)="onMenuItemClick('dev-example')">dev-example
+                </button>
+
+            </mat-menu>
+
+            <div class="font-semibold leading-6 truncate flex self-start">
+                Server status:
+                <div class="font-semibold leading-6 truncate" [class]="devServerStatus">
+                    &nbsp;&nbsp; {{devServerStatus}}
+                </div>
+                <div *ngIf="showTimer===true" class="ml-1.5">
+                    <app-timer [loading]="isLoading">
+                    </app-timer>
+                </div>
+            </div>
+
+        </div>
+{{devServerIsRunning()|json}}
+        <div class="grid grid-cols-8 gap-2">
+            <button mat-raised-button (click)="launchServer()" [disabled]="devServerIsRunning()
+             || devServerStatus==='Stopped' || devServerStatus==='Waiting' || devServerStatus==='Starting'">Criar</button>
+            <button mat-raised-button (click)="startServer()" [disabled]="devServerStatus!=='Stopped'">Iniciar</button>
+            <button mat-raised-button (click)="stopServer()" [disabled]="!devServerIsRunning()
+             || devServerStatus==='Stopped' || devServerStatus==='Starting'">Parar</button>
+            <button mat-raised-button (click)="destroyServer()" [disabled]="devServerIsRunning()
+             || devServerStatus!=='Stopped'">Destruir</button>
+            <button mat-raised-button [disabled]="!devServerIsRunning() || devServerStatus==='Stopped'">Terminal</button>
+            <button mat-raised-button >Log</button>
+            <button mat-raised-button (click)="drawerOpened=true"><mat-icon>settings</mat-icon></button>
+            <button mat-raised-button (click)="getDevServerInfo()">
+                <mat-icon>autorenew</mat-icon>
+            </button>
+        </div>
+
+
+
+<div class="relative flex overflow-hidden border mt-8">
+        <corp-drawer
+                class="w-500 min-w-500"
+                [fixed]="true"
+                [mode]="'over'"
+                [name]="'propertiesServerDrawer'"
+                [position]="'right'"
+                [opened]="drawerOpened"
+                (openedChanged)="drawerOpenedChanged($event)"
+                #propertiesServerDrawer>
+                <div class="flex flex-col mt-15">
+                    <header class="flex flex-row items-center  bg-gray-800 text-white p-4 h-12" >
+                        <h1>Server Configuration</h1>
+                        <button
+                                class="ml-auto"
+                                mat-icon-button
+                                (click)="propertiesServerDrawer.close()">
+                            <mat-icon
+                                    class="text-current"
+                                    [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+                        </button>
+                    </header>
+                    <div class="p-2 flex-col ">
+                        <app-image-launch [server]="this.server" (doCreate)="launchServer($event)" (onSaved)="setSelectedServer($event)"></app-image-launch>
+                    </div>
+                </div>
+        </corp-drawer>
+</div>

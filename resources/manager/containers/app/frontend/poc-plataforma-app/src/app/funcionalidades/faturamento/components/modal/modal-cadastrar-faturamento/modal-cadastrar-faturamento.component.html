@@ -1,0 +1,87 @@
+<sc-modal headerTitle="Incluir Novo Faturamento">
+  <div class="borda-fundo-branco">
+    <form [formGroup]="form" autocomplete="off" (ngSubmit)="novoFaturamento()">
+
+      <div class="ss-grid">
+
+        <div class="col-12">
+          <sc-instituicao formControlName="instituicao" #instituicaoComponent
+                          (valueChange)="buscaArquivoNas()"></sc-instituicao>
+        </div>
+
+        <div class="col-4">
+          <sc-form-field>
+            <input scInput
+                   scLabel="Data"
+                   bsDatepicker
+                   formControlName="data"
+                   [placeholder]="'MM/YYYY'"
+                   [bsConfig]="bsConfig"
+                   (ngModelChange)="buscaArquivoNas()"
+            />
+            <sc-msg-erro [control]="form.get('data')"></sc-msg-erro>
+          </sc-form-field>
+        </div>
+
+        <div class="col-8">
+          <sc-form-field>
+            <ng-select scLabel="Arquivo NAS" [items]="arquivosNas"
+                       formControlName="arquivoNas"
+                       notFoundText="Documento não encontrado">
+            </ng-select>
+            <sc-msg-erro [control]="form.get('arquivoNas')"></sc-msg-erro>
+          </sc-form-field>
+        </div>
+
+        <div [class.col-12]="true" [class.ss-grid]="true">
+          <div class="upload-btn-wrapper col-offset-start-9 col-offset-end-2">
+            <button class="ss-btn ss-btn-primary ss-btn-icon-left"
+                    [disabled]="(form.invalid || instituicaoComponent.formulario.invalid)">
+              <i class="mdi mdi-file-plus material-icons ss-icon"></i>Arquivo Extra
+            </button>
+            <input type="file" (change)="salvaBase64($event)" #inputFile
+                   [disabled]="(form.invalid || instituicaoComponent.formulario.invalid)"/>
+          </div>
+
+          <div class="col-offset-start-11 col-offset-end-1">
+            <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="submit"
+                    [disabled]="(form.invalid || instituicaoComponent.formulario.invalid) || form.get('arquivoNas').disabled">
+              <i class="mdi mdi-check material-icons ss-icon"></i>Iniciar Faturamento
+            </button>
+          </div>
+        </div>
+
+        <div class="ss-table ss-table-sortable col-12" *ngIf="this.arquivos && this.arquivos.length > 0">
+          <table style="table-layout: fixed; width: 100%;">
+            <thead>
+            <tr>
+              <th width="90%">Nome Documento</th>
+              <th width="10%"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let arquivo of arquivos">
+              <td [class.limitTextDiv]="true">
+                {{ arquivo.dadosArquivo.nomeArquivo }}
+              </td>
+              <td data-label="Ações" class="ss-table-actions">
+                <p class="ss-more"><i class="material-icons">more_vert</i>
+                  <span class="ss-moretext ss-more-left">
+                          <a class="ss-more-item" (click)="downloadArquivo(arquivo)">
+                            <i class="material-icons" style="padding-right: 5px">cloud_download</i>Visualizar
+                          </a>
+                          <a class="ss-more-item" (click)="removeItemLista(arquivo)">
+                            <i class="material-icons" style="padding-right: 5px">delete</i>Excluir
+                          </a>
+                      </span>
+                </p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+</sc-modal>
+

@@ -1,0 +1,102 @@
+<div style="margin-top: 25px;">
+  <sc-card>
+    <sc-card-header>
+      <h5>Central de Atendimento</h5>
+      <div class="separador">
+        <hr />
+      </div>
+    </sc-card-header>
+
+    <sc-card-content>
+
+      <form [formGroup]="formConsulta">
+        <sc-card>
+          <sc-card-header>
+            <div class="ss-grid">
+              <div class="col-6">
+                <h6>Busca de Proposta</h6>
+              </div>
+            </div>
+            <div class="separador">
+              <hr />
+            </div>
+          </sc-card-header>
+          <sc-card-content>
+            <div class="ss-grid">
+              <div class="col-4">
+                <sc-form-field>
+                  <input scInput scLabel="Buscar por CPF/CNPJ:" formControlName="cpfCnpj" (change)="consultar()" />
+                </sc-form-field>
+              </div>
+            </div>
+          </sc-card-content>
+        </sc-card>
+      </form>
+
+      <div class="espacamento"></div>
+
+      <div *ngIf="(propostas$ | async)?.length > 0">
+        <sc-card>
+          <sc-card-header>
+            <sc-tab-panel id="tab-panel" class="outside">
+              <sc-tab title="Propostas">
+                <h6>
+                  <span>Foram encontradas </span>
+                  <span class="cor-verde-escuro">{{ (propostas$ | async)?.length }}</span>
+                  <span> propostas de seguros em registro</span>
+                </h6>
+                <div class="ss-table ss-table-sortable">
+                  <table id="minhaTabela">
+                    <thead>
+                      <tr>
+                        <th>N° PROPOSTA</th>
+                        <th>PRODUTO</th>
+                        <th>DATA</th>
+                        <th>PRÊMIO</th>
+                        <th>COBERTURA</th>
+                        <th [hidden]="true">ASSINATURA</th>
+                        <th>SITUAÇÃO</th>
+                        <th>AÇÕES</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let proposta of propostas$ | async">
+                        <td>{{ proposta.numProposta }}</td>
+                        <td>{{ proposta.produto }}</td>
+                        <td>{{ proposta.data | date:'dd/MM/yyyy'}}</td>
+                        <td>{{ proposta.premio | currency:'BRL' :'symbol':'0.2-2':'pt'}}</td>
+                        <td>{{ proposta.cobertura | currency:'BRL' :'symbol':'0.2-2':'pt' }}</td>
+                        <td [hidden]="true">{{ proposta.assinatura }}</td>
+                        <td>{{ proposta.situacao }}</td>
+                        <td data-label="Ações">
+
+                          <span>
+                            <a (click)="resolverPedencia(proposta)" *ngIf="isSituacaoPendente(proposta)">
+                              <i class="mdi mdi-help-circle-outline material-icons" style="padding-right: 5px"
+                                title="Resolver Pendência"></i>
+                            </a>
+                            <a (click)="cancelarProposta(proposta)" *ngIf="isCancelarDisponivel(proposta)">
+                              <i class="mdi mdi-close-circle-outline material-icons" style="padding-right: 5px"
+                                title="Cancelar"></i>
+                            </a>
+                            <a (click)="detalharProposta(proposta)">
+                              <i class="mdi mdi-newspaper material-icons" style="padding-right: 5px"
+                                title="Detalhar Proposta"></i>
+                            </a>
+                          </span>
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </sc-tab>
+            </sc-tab-panel>
+          </sc-card-header>
+        </sc-card>
+      </div>
+
+
+    </sc-card-content>
+  </sc-card>
+</div>

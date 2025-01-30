@@ -1,0 +1,159 @@
+<section>
+  <form [formGroup]="form" autocomplete="off" (ngSubmit)="consultar(formInstituicao.formulario)">
+    <div>
+      <div class="ss-grid">
+        <div class="col-12">
+          <h5>VENDAS</h5>
+        </div>
+        <div class="col-12">
+          <sc-instituicao formControlName="instituicao" [coopRequerid]="false" #formInstituicao></sc-instituicao>
+        </div>
+
+        <div class="col-2">
+          <sc-form-field>
+            <input scInput scLabel="Ponto de Atendimento(PA)" formControlName="pontoAtendimento"/>
+          </sc-form-field>
+        </div>
+
+        <div class="col-1">
+          <sc-form-field>
+            <select scInput scLabel="Produto" formControlName="produto">
+              <option value="">Selecione</option>
+              <option *ngFor="let produto of produtoProposta"
+              [value]=produto>{{produto | enum:'TIPO_PRODUTO_PROPOSTA_RELATORIO'}}</option>
+            </select>
+          </sc-form-field>
+        </div>
+
+        <div class="col-3">
+          <sc-form-field>
+            <div class="ss-grid">
+              <div class="col-5">
+                <input scInput
+                      scLabel="Período"
+                      formControlName="dataInicio"
+                      bsDatepicker
+                      [placeholder]="'DD/MM/YYYY'"
+                      [bsConfig]="{minMode: 'day',dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-datapick'}"
+                      (onHidden)="atualizaValidacaoData()"
+                      (change)="atualizaValidacaoData()"/>
+                      <sc-msg-erro [control]="form.get('dataInicio')"></sc-msg-erro>
+                </div>
+                      à
+                <div class="col-6">
+                  <input scInput
+                        formControlName="dataFim"
+                        bsDatepicker
+                        [placeholder]="'DD/MM/YYYY'"
+                        [bsConfig]="{minMode: 'day',dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-datapick'}"
+                        (onHidden)="atualizaValidacaoData()"
+                        (change)="atualizaValidacaoData()"/>
+                  <sc-msg-erro [control]="form.get('dataFim')"></sc-msg-erro>
+                </div>
+            </div>
+          </sc-form-field>
+        </div>
+        <div class="col-1">
+          <sc-form-field>
+            <select scInput scLabel="Situação Proposta" formControlName="situacaoProposta">
+                <option value="">Selecione</option>
+              <option *ngFor="let situacao of situacaoProposta"
+              [value]=situacao>{{situacao | enum:'TIPO_SITUACAO_PROPOSTA_RELATORIO'}}</option>
+            </select>
+          </sc-form-field>
+        </div>
+
+        <div class="col-2">
+          <sc-form-field>
+            <input scInput
+                  scLabel="Data de Cancelamento"
+                  formControlName="dataCancelamento"
+                  bsDatepicker
+                  [placeholder]="'DD/MM/YYYY'"
+                  [bsConfig]="{minMode: 'day',dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-datapick'}"/>
+          </sc-form-field>
+        </div>
+
+        <div class="col-1">
+          <sc-form-field>
+            <select scInput scLabel="Canal de Venda" formControlName="canal">
+              <option value="">Selecione</option>
+              <option *ngFor="let canal of canalProposta"
+              [value]=canal>{{canal | enum:'TIPO_CANAIS_PROPOSTA_RELATORIO'}}</option>
+            </select>
+          </sc-form-field>
+        </div>
+        <div class="col-2">
+          <sc-form-field>
+            <input scInput scLabel="CPF Segurado" formControlName="cpfCnpj"  (blur)="formatarCPF()" (focus)="retirarFormatoCPF()"/>
+          </sc-form-field>
+        </div>
+
+        <div class="col-1">
+            <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="submit"><i class="mdi mdi-search-web material-icons ss-icon"></i>Consultar</button>
+        </div>
+        <div class="col-1">
+          <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="button" (click)="consultarCsv(formInstituicao.formulario, -1)"><i class="mdi mdi-file-download material-icons ss-icon"></i>Gerar CSV</button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+  <br><br>
+
+  <div class="ss-table ss-table-sortable" style="overflow-x: scroll; overflow-y: hidden; white-space: nowrap;">
+    <table id="minhaTabela">
+      <thead>
+      <tr>
+        <th>Proposta</th>
+        <th>Produto</th>
+        <th>Situação</th>
+        <th>Data da Situação</th>
+        <th>Cooperativa-PA</th>
+        <th>Data da Venda</th>
+        <th>CPF</th>
+        <th>Nome</th>
+        <th>Periodicidade</th>
+        <th>Prêmio</th>
+        <th>Prêmio Mensal</th>
+        <th>Capital Segurado</th>
+        <th>CPF do Vendedor</th>
+        <th>Canal de Venda</th>
+        <!--<th>Data Cancelamento -- </th>-->
+        <!--<th>Cancelamento Seguro -- </th>-->
+      </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let venda of propostasVenda | async | paginate: { id: 'paginacaoVenda',
+                      itemsPerPage: 15,
+                      currentPage: (paginacaoVenda$ | async)?.pagina + 1,
+                      totalItems: (paginacaoVenda$ | async)?.totalRegistros}">
+          <td>{{ venda.proposta }}</td>
+          <td>{{ venda.produto }}</td>
+          <td>
+            <div class="ss-group-inline" style="text-align:center;">
+              <button width="100px" (click)="exibirMotivo(venda)" [ngClass]="verificarSituacao(venda)">{{venda.situacao}}</button>
+            </div>
+          </td>
+          <td>{{ venda.dataSituacao | date:'dd/MM/yyyy'}}</td>
+          <td>{{ venda.cooperativa }}-{{ venda.pa }}</td>
+          <td>{{ venda.dataVenda }}</td>
+          <td>{{ venda.cpfCnpj | cpfOuCnpj}}</td>
+          <td>{{ venda.nomePessoa }}</td>
+          <td>{{ venda.periodicidade }}</td>
+          <td>{{ venda.valorPremio | currency:'BRL' }}</td>
+          <td>{{ venda.valorPremioMensal | currency:'BRL' }}</td>
+          <td>{{ venda.valorCapitalSegurado | currency:'BRL' }}</td>
+          <td>{{ venda.cpfVendedor }}</td>
+          <td>{{ venda.canalContratacao }}</td>
+          <!--<td>{{ venda.dataCancelamento }}</td>
+          <td>{{ venda.motivoCancelamento }}</td>-->
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls id="paginacaoVenda" [class.my-pagination]="true" maxSize="10" directionLinks="true" previousLabel="Anterior" nextLabel="Próximo"
+        [responsive]="true" (pageChange)="pageChanged(formInstituicao.formulario, $event)">
+    </pagination-controls>
+  </div>
+</section>

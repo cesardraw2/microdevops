@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Atualize seu navegador</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body {
+            background:white;
+            font-family: 'Lato', sans-serif;
+            text-align:center;
+        }
+        .ss-container {
+            width:800px;
+            margin:0 auto;
+            min-height:900px;
+        }
+        .ss-browser {
+            width:100%;
+            padding: 0 1px;
+        }
+        .col {
+            width:50%;
+            float:left;
+            margin:62px 0 0 0;
+        }
+        h1{
+            font-weight:900;
+            font-size:42px;
+            padding:0;
+            margin:0 0 5px 0;
+        }
+        h2{
+            font-weight:300;
+            font-size:42px;
+            padding:0;
+            margin:24px 0 40px 0;
+            line-height: 0;
+        }
+        p{
+            font-size:24px;
+            color:#5E6572;
+        }
+        .col p {
+            font-size:24px;
+        }
+        .dev {
+            font-size:12px!important;
+            color:#7C8593;
+        }
+        .dev span {
+            font-weight:bold;
+        }
+        .w100 {
+            width:100%;
+        }
+        a {
+            color:#2196F3;
+            line-height:30px;
+            text-decoration:none;
+        }
+        a:hover {
+            text-decoration:underline;
+        }
+        img {
+            margin-bottom:20px;
+        }
+
+        .personagem {
+            width:70%;
+            text-align:center;
+            margin:0 auto;
+        }
+        .personagem img {
+            margin:24px auto;
+        }
+        .definir {
+            display:block;
+            text-align:center;
+            height:40px;
+        }
+        .definir span {
+            color:#2196F3;
+        }
+        .definir a {
+            margin:0;
+            padding:0;
+            line-height:2px;
+            color:#7C8593;
+            background:url(assets/images/dica.png);
+            background-repeat:no-repeat;
+            background-position-y: center;
+            padding:10px 0 10px 30px;
+        }
+        .definir img {
+            float:left;
+            margin-right:5px;
+            margin-top:-1px;
+        }
+        @media (max-width: 600px) {
+            .ss-container {
+                min-height:1250px;
+            }
+            .ss-container , .personagem {
+                width:100%;
+            }
+            .col {
+                width:100%;
+            }
+            body {
+                padding:0 10px;
+            }
+            h2{
+                line-height: 42px;
+                margin: 10px 0 20px 0;
+         }
+        }
+    </style>
+
+    </head>
+    <body>
+        <div class="ss-container">
+            <div class="personagem">
+                <img src="assets/images/personagem.png" class="w100" alt="personagem empurrando a logo do Internet explorer">
+            </div>
+        <div class="ss-browser">
+            <h1>Internet Explorer</h1>
+            <h2>Seu navegador não é suportado!</h2>
+            <p>Além de não ser seguro, ele não funciona corretamente no novo Sisbr. <br>Que tal usar um desses navegadores?</p>
+            <div class="col">
+                <img src="assets/images/chrome.png" alt="logo do chrome">
+                <p>Chrome</p>
+                <p class="dev">Desenvolvido pelo <span>Google</span></p>
+                <a href="https://www.google.pt/intl/pt-PT/chrome/?brand=CHBD&gclid=Cj0KCQiAyKrxBRDHARIsAKCzn8xhlBnjza_6VKhamTWskCcTEJlnx6-cG_HLNn8kvq-SEqij0ZpmeRwaAhpKEALw_wcB&gclsrc=aw.ds">Download</a>
+            </div>
+            <div class="col">
+                <img src="assets/images/firefox.png" alt="logo do firefox">
+                <p>Firefox</p>
+                <p class="dev">Desenvolvido pela <span>Mozila</span></p>
+                <a href="https://www.mozilla.org/pt-BR/firefox/new/">Download</a>
+            </div>
+        </div>
+        </div>
+        <div class="definir">
+            <a href="http://172.16.0.67/tas/public/ssp/content/search?q=IC%2013356"><span>Saiba</span> como definir-lo como seu novo navegador padrão</a>
+        </div>
+    </body>
+</html>

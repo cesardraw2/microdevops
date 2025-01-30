@@ -1,0 +1,26 @@
+<sc-card>
+  <sc-card-header>
+    <div class="ss-grid espacoTitulo">
+      <div class="col-6">
+        <h5>Detalhes da proposta - {{idProposta}}</h5>
+      </div>
+      <div class="col-6 tituloProponente">
+        <div style="margin: 0px 0px 6px 0px;"> </div>
+      </div>
+    </div>
+  </sc-card-header>
+  <sc-card-content>
+    <sc-tab-panel id="tab-panel" class="outside">
+      <sc-tab title="Dados Pessoais" disabled="true"></sc-tab>
+      <sc-tab title="Beneficiários" disabled="true"></sc-tab>
+      <sc-tab title="Dados Pagamento" disabled="true"></sc-tab>
+      <sc-tab title="Histórico de Pagamentos" disabled="true"></sc-tab>
+      <sc-tab title="Documentos da proposta" selected="true">
+          <sc-proposta-documento [idProposta]="idProposta"></sc-proposta-documento>
+      </sc-tab>
+      <sc-tab title="Solicitar Benefícios" disabled="true"></sc-tab>
+    </sc-tab-panel>
+  </sc-card-content>
+</sc-card>
+
+

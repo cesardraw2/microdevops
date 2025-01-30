@@ -1,0 +1,29 @@
+<div class="centralizar-card-externo">
+  <div class="caixa-seguros">
+    <div class="caixa-seguros-top">
+      <div style="display: flex; flex: auto; margin-left: 20px; margin-top: 13px;">
+        <label class="titulo-seguro">Quero Gerenciar</label>
+      </div>
+    </div> 
+    <div class="legenda-caixa"><label class="legenda-caixa-label">CENTRAL DE GESTÃO</label></div>
+    <div style="padding:16px; height: 178px; margin-top: 30px; width: 350px; margin-left: 43px;">
+     <!-- <sc-capes-cpf-cnpj labelCpfCnpj="CPF ou CNPJ" #cpfCnpjComponent required  (showButton)="showButtonHandler($event)">
+      </sc-capes-cpf-cnpj> -->
+      <sc-capes-filtro
+        labelCpfCnpj="CPF ou CNPJ"
+        #cpfCnpjComponent
+        required
+        (showButton)="showButtonHandler($event)"
+        (valueChange)="encaminharProdutos()">
+      </sc-capes-filtro>
+     
+      <!-- <div style="width: 140px; margin-top: 10px;">
+        <button class="ss-btn ss-btn-primary button-center" style="height: 46px;"
+          (click)="encaminharProdutos()" type="button">
+          <span><span style="color: white;font-size: 16px;">Pesquisar</span> <span><i class="mdi mdi-magnify" 
+                style="font-size: 20px; margin-left: 13px; color: white;"></i> </span></span>
+        </button>
+      </div> -->
+    </div>
+  </div>
+</div>

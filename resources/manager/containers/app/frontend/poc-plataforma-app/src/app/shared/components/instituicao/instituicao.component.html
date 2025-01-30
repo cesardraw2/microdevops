@@ -1,0 +1,43 @@
+<form [formGroup]="formulario">
+
+
+  <div [class.ss-grid]="true">
+    <div class="col-6">
+      <sc-form-field>
+        <ng-select [items]="centrais"
+                   scLabel="{{ 'RELATORIOS.LABELS.CENTRAL' | translate }}"
+                   bindLabel="descricao"
+                   notFoundText="Central não localizada"
+                   [placeholder]="placeHolderCentral"
+                   formControlName="central"
+                   loadingText="Carregando as Centrais"
+                   [markFirst]="true"
+                   [class.desabilitar-arrow]="(centrais && centrais.length === 1)"
+                   (change)="buscarCooperativas()">
+        </ng-select>
+        <sc-msg-erro *ngIf="isUsuario0001 != true" [control]="formulario.get('central')"></sc-msg-erro>
+      </sc-form-field>
+    </div>
+
+    <div class="col-6">
+      <sc-form-field>
+        <ng-select [items]="cooperativas"
+                   scLabel="{{ 'RELATORIOS.LABELS.COOP' | translate }}"
+                   bindLabel="descricao"
+                   bindValue="idInstituicao"
+                   notFoundText="Cooperativa não localizada"
+                   [placeholder]="placeHolderCooperativa"
+                   formControlName="cooperativa"
+                   loadingText="Carregando as Cooperativas"
+                   [class.desabilitar-arrow]="(cooperativas && cooperativas.length === 1)"
+                   (ngModelChange)="atualizaValorComponente($event)"
+                   id="cooperativas">
+        </ng-select>
+        <sc-msg-erro [control]="formulario.get('cooperativa')"></sc-msg-erro>
+      </sc-form-field>
+    </div>
+  </div>
+</form>
+
+
+

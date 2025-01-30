@@ -1,0 +1,12 @@
+<sc-modal id="modal-editar-devolucao" [headerTitle]="titulo" width="small">
+
+  <div class="ss-modal-body">
+      <div class="ss-grid" style="margin: 20px;">
+      <div class="col-12">
+          <label>Motivo</label>
+          <textarea name="motivo" id="motivo"  style="width: 99%; margin-left: 5px;" rows="4" readonly minlength="10">{{venda.motivoCancelamento}}</textarea>
+        </div>
+      </div>
+  </div>
+
+</sc-modal>

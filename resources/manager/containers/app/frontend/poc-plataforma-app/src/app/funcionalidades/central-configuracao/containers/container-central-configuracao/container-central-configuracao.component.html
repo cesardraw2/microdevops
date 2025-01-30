@@ -1,0 +1,59 @@
+<sc-card>
+  <sc-card-header>
+    <div class="ss-grid espacoTitulo">
+      <div class="col-6">
+        <h5>Configurações</h5>
+      </div>
+
+    </div>
+  </sc-card-header>
+  <sc-card-subtitle>
+    <div class="titulo">
+      Proteção para quem você ama. Tranquilidade para você cuidar do que é mais significativo em sua vida começa com a
+      escolha de um seguro feito sob medida para suas necessidades. No Sicoob, você encontra planos flexíveis e
+      personalizados, associados a uma cesta de serviços exclusiva para garantir que você, sua familia e seu patrimônio
+      estejam sempre protegidos.
+      <div class="separador">
+        <hr />
+      </div>
+    </div>
+  </sc-card-subtitle>
+  <sc-card-content>
+    <div class="ss-grid" style="overflow: auto;">
+      <div class="ss-min-height col-1">
+        <sgr-tipo-seguro-card titulo="Configurações Gerais" productName="SGR" linkRouterButton="{{routeConfigGerais}}"
+        descricao="Configurações gerais da aplicação."
+        icon="mdi mdi-settings ico-seguro-card"
+        ></sgr-tipo-seguro-card>
+      </div>
+
+      <div class="ss-min-height col-1">
+        <sgr-tipo-seguro-card titulo="Seguro Vida Prestamista" productName="SVP" linkOpenButton="{{urlSpr}}"
+          descricao="O Seguro Vida Prestamista promove um cuidado especial com a família do cooperado quando ela mais precisa, garantindo a quitação do saldo devedor de uma dívida."
+          icon="mdi mdi-heart ico-seguro-card"></sgr-tipo-seguro-card>
+      </div>
+
+      <div class="ss-min-height col-1" *ngxPermissionsOnly="'FNCACESSARAPOIOAMIGO'">
+        <sgr-tipo-seguro-card titulo="Apoio Amigo" productName="ApoioAmigo" linkOpenButton="{{urlApoioAmigo}}"
+          descricao="Gestão Apoio Amigo" icon="mdi mdi-heart ico-seguro-card"></sgr-tipo-seguro-card>
+      </div>
+      <div class="ss-min-height col-1" *ngxPermissionsOnly="'FNCACESSARBENEFICIOS'">
+        <sgr-tipo-seguro-card titulo="Gestão de benefícios" productName="gestaoBeneficios"
+          linkOpenButton="{{urlBeneficios}}"
+          descricao="Realize configurações relacionadas ao modulo Gestão de Benefícios"
+          icon="mdi mdi-heart ico-seguro-card"></sgr-tipo-seguro-card>
+      </div>
+      <div class="ss-min-height col-1" *ngxPermissionsOnly="'FNCACESSARCONFIGURACAOSVD'">
+        <sgr-tipo-seguro-card titulo="Seguro Vida Individual" productName="SVE"
+          linkOpenButton="{{urlSvd}}" descricao="O Seguro Vida Individual do Sicoob foi pensado para proteger quem tem entre 16 e 65 anos e faz questão de saber que sua família estará sempre bem cuidada." icon="mdi mdi-heart ico-seguro-card">
+        </sgr-tipo-seguro-card>
+      </div>
+      <div class="ss-min-height col-1" *ngxPermissionsOnly="'FNCACESSARSVE'">
+        <sgr-tipo-seguro-card titulo="Seguro Vida Empresarial" productName="SVE"
+          linkOpenButton="{{urlSve}}" descricao="Voltado para funcionários, sócios e diretores, o Seguro Vida  Empresarial
+                                      é sinônimo de tranquilidade e facilidade na gestão da empresa." icon="mdi mdi-heart ico-seguro-card">
+        </sgr-tipo-seguro-card>
+      </div>
+    </div>
+  </sc-card-content>
+</sc-card>

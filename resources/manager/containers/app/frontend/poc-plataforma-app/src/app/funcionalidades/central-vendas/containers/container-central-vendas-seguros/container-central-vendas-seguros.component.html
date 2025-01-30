@@ -1,0 +1,54 @@
+
+<div class="sgr-card card-inicial">
+  <div style="width: 200px;">
+    <span><i class="mdi mdi-account-circle icon-user"></i> </span>
+  </div>
+  <div style="width: 100%;">
+    <label class="texto-titulo-lista-produto">Olá, este é o Perfil do nosso cooperado </label>
+    <label class="texto-titulo-proponente-lista-produto">{{ (proponente | async)?.nomePessoa }}</label>
+  </div>
+  <div class="caixa-proca-proponente-lista-produto">
+    <div style="width: 130px;">
+      <a (click)=encaminharTelaConsulta()>
+        <div style="float:left;"><label>Trocar cooperado</label></div>
+        <div style="float:right;"> <span> <i class="mdi mdi-logout-variant" style="font-size: 17px;"></i></span></div>
+      </a>
+    </div>
+  </div>
+</div>
+<div style="margin-top: 20px;">
+  <sc-card>
+    <sc-card-header>
+      <div class="ss-grid espacoTitulo">
+        <div class="col-6">
+          <h5>Sicoob Seguros</h5>
+        </div>
+      </div>
+    </sc-card-header>
+    <sc-card-subtitle>
+      <div class="titulo">
+        Cuidar do que é mais importante na vida dos cooperados começa com a oferta de um seguro feito sob medida para suas necessidades. No Sicoob tem planos flexíveis e personalizados, associados a uma cesta de serviços exclusiva para garantir que o cooperado, sua família e seu patrimônio estejam sempre protegidos.
+        <div class="separador"><hr/></div>
+      </div>
+    </sc-card-subtitle>
+    <sc-card-content>
+      <div class="ss-grid">
+        <div class="ss-min-height col-1">
+          <sgr-tipo-seguro titulo="Seguros vida"
+                          icon="mdi mdi-heart ico-seguro"
+                          textoSubTitulo=" Os seguros de vida foram criados para assegurar o futuro financeiro dos cooperados e de quem importa, sem atrapalhar sua renda atual. Temos planos de Seguro de Vida Individual e Vida Empresarial que protege o segurado em várias situações: morte natural, morte acidental, invalidez, doenças graves e assistências. Confira nossos produtos e ofereça a melhor opção ao cooperado."
+                          [linkNavegacao]="'central-vendas/seguro-vida'"
+          ></sgr-tipo-seguro>
+        </div>
+        <div class="ss-min-height col-1" *ngxPermissionsOnly="'FNCSEGURORESIDENCIAL'">
+          <sgr-tipo-seguro titulo="Seguros Residencial"
+                          icon="mdi mdi-home ico-seguro"
+                          textoSubTitulo="Seguro Residencial para pessoa física"
+                          [linkNavegacaoExterna]="linkSeguroResidencialPF"
+                          [opcoes]="opcoesSeguroResidencialPF"
+          ></sgr-tipo-seguro>
+        </div>
+      </div>
+    </sc-card-content>
+  </sc-card>
+<div>

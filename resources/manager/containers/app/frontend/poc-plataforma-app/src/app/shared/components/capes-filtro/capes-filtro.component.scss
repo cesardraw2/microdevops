@@ -1,0 +1,35 @@
+$centralizado: center;
+$automatico: auto;
+
+::ng-deep {
+  .ss-form-group {
+    label {
+      text-align: $centralizado;
+    }
+  }
+}
+
+.sgr-center {
+  margin: {
+      left: $automatico;
+      right: $automatico;
+  }
+}
+.sgr-size-cpf-cnpj-field {
+  width: 100%;
+  height: 100%;
+}
+
+input{
+  text-align:$centralizado;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+  -webkit-appearance: none;
+  
+}
+input[type=number] { 
+ -moz-appearance: textfield;
+ appearance: textfield;
+
+}

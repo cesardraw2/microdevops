@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  glances:
+    image: nicolargo/glances:dev
+    container_name: glances
+    restart: unless-stopped
+    pid: host
+    privileged: true
+    network_mode: "host"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/run/user/1000/podman/podman.sock:/run/user/1000/podman/podman.sock:ro"
+      - "./glances.conf:/glances/conf/glances.conf"
+    environment:
+      - TZ=${TZ}
+      - "GLANCES_OPT=-C /glances/conf/glances.conf -w"
+    # Uncomment for GPU compatibilty (Nvidia) inside the container
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.monitoring.rule=Host(`dev-server.mshome.net`)"
+      - "traefik.http.services.monitoring.loadbalancer.server.port=61208"

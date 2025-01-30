@@ -1,0 +1,92 @@
+{
+  "services": [
+    {
+      "name": "portainer",
+      "internalHostName": "dev-server.mshome.net",
+      "externalHostName": "portainer.localhost",
+      "internalPort": 9001,
+      "externalPort": 80,
+	  "protocol": "http"
+    },
+    {
+      "name": "adminer",
+      "internalHostName": "dev-server.mshome.net",
+      "externalHostName": "adminer.localhost",
+      "internalPort": 8089,
+      "externalPort": 80,
+      "protocol": "http"
+    },
+    {
+      "name": "proxy",
+      "internalHostName": "dev-server.mshome.net",
+      "externalHostName": "proxy.localhost",
+      "internalPort": 8080,
+      "externalPort": 80,
+	  "protocol": "http"
+    },
+    {
+      "name": "sicoob-seguros-backoffice",
+      "internalHostName": "dev-server.mshome.net",
+      "externalHostName": "sicoobseguros.localhost",
+      "internalPort": 9580,
+      "externalPort": 80,
+	  "protocol": "http"
+    },
+    {
+      "name": "poc-open-liberty",
+      "internalHostName": "dev-server.mshome.net",
+      "externalHostName": "poc-open-liberty.localhost",
+      "internalPort": 9581,
+      "externalPort": 80,
+	  "protocol": "http"
+    },
+    {
+      "name": "system-monitor",
+      "internalHostName": "dev-server.mshome.net",
+      "externalHostName": "system-monitor.localhost",
+      "internalPort": 61208,
+      "externalPort": 80,
+	  "protocol": "http"
+    },
+    {
+      "name": "poc-angular",
+      "internalHostName": "dev-server.mshome.net",
+      "externalHostName": "poc-angular.localhost",
+      "internalPort": 4400,
+      "externalPort": 80,
+	  "protocol": "http"
+    },
+    {
+      "name": "poc-plataforma",
+      "internalHostName": "dev-server.mshome.net",
+      "externalHostName": "poc-plataforma.localhost",
+      "internalPort": 4300,
+      "externalPort": 80,
+	  "protocol": "http"
+    },
+    {
+      "name": "prometheus",
+      "internalHostName": "dev-server.mshome.net",
+      "externalHostName": "prometheus.localhost",
+      "internalPort": 9090,
+      "externalPort": 80,
+	  "protocol": "http"
+    },
+    {
+      "name": "jaeger",
+      "internalHostName": "dev-server.mshome.net",
+      "externalHostName": "jaeger.localhost",
+      "internalPort": 16686,
+      "externalPort": 80,
+	  "protocol": "http"
+    },
+    {
+      "name": "ollama",
+      "internalHostName": "dev-server.mshome.net",
+      "externalHostName": "ia.localhost",
+      "internalPort": 11434,
+      "externalPort": 80,
+	  "protocol": "http"
+    }
+  ]
+}

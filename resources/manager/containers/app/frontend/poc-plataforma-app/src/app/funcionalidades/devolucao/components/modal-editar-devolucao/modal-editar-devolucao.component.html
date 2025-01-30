@@ -1,0 +1,105 @@
+<sc-modal id="modal-editar-devolucao" [headerTitle]="titulo" width="small">
+
+  <form [formGroup]="form">
+    <div class="ss-modal-body">
+        <div class="ss-grid" style="margin: 20px;">
+          <div class="col-2">
+            <label>Central</label>
+            <input scInput formControlName="central"/>
+          </div>
+          <div class="col-3">
+              <label>Cooperativa</label>
+            <input scInput formControlName="cooperativa" />
+          </div>
+        </div>
+        <div class="ss-grid" style="margin: 20px;">
+          <div class="col-3">
+            <sc-form-field>
+              <label>CPF/CNPJ</label>
+              <input scInput formControlName="cpfCnpj" (blur)="formatarCPFCNPJ()" (focus)="retirarFormatoCPFCNPJ()"/>
+            </sc-form-field>
+          </div>
+          <div class="col-5">
+            <sc-form-field>
+              <label>Número de contrato</label>
+              <input scInput formControlName="numeroContrato" minlength="20"/>
+            </sc-form-field>
+          </div>
+          <div class="col-4">
+            <sc-form-field>
+              <label>Produto</label>
+              <select id="produto" name="produto" formControlName="produto" type="text" class="ss-form-control">
+                <option value="">Selecione o produto</option>
+                <option value="1">Empréstimo</option>
+                <option value="2">Credito Rural</option>
+                <option value="3">Conta Corrente</option>
+              </select>
+            </sc-form-field>
+          </div>
+        </div>
+        <div class="ss-grid" style="margin: 20px;">
+          <div class="col-5">
+            <sc-form-field>
+              <label>Tipo Conta Corrente</label>
+              <select id="tipoConta" name="tipoConta" formControlName="tipoConta" type="text" class="ss-form-control">
+                <option value="">Selecione o tipo da conta</option>
+                <option value="1">Conta do Associado</option>
+                <option value="2">Conta da Cooperativa</option>
+              </select>
+            </sc-form-field>
+          </div>
+          <div class="col-4">
+            <sc-form-field>
+              <label>Cooperativa</label>
+              <input scInput formControlName="numeroCooperativaConta"/>
+            </sc-form-field>
+          </div>
+          <div class="col-3">
+            <sc-form-field>
+              <label>Conta Corrente</label>
+              <input scInput formControlName="numeroContaCorrente"/>
+            </sc-form-field>
+          </div>
+        </div>
+        <div class="ss-grid" style="margin: 20px;" *ngIf="!visualizarValidarStatus()">
+          <div class="upload-btn-wrapper col-offset-start-11 col-offset-end-1">
+            <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="submit"><i
+              class="mdi mdi-file-plus material-icons ss-icon"></i>Buscar Arquivos
+            </button>
+            <input type="file" (change)="salvaBase64($event)" multiple />
+          </div>
+        </div>
+      <div class="ss-table ss-table-sortable" style="margin: 20px;">
+        <table id="minhaTabela">
+          <thead>
+          <tr>
+            <th>Nome</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let arquivo of arquivos">
+              <td><p class="teste">{{ arquivo.nomeArquivo }}</p></td>
+              <td data-label="Ações" class="ss-table-actions">
+                <p class="ss-more"><i class="material-icons">more_vert</i>
+                  <span class="ss-moretext ss-more-left">
+                      <a class="ss-more-item" (click)="visualizarArquivo(arquivo)"><i class="material-icons" style="padding-right: 5px">find_in_page</i>Visualizar</a>
+                      <a [hidden]="visualizarValidarStatus()" class="ss-more-item" (click)="removeItemLista(arquivo)"><i class="material-icons" style="padding-right: 5px">delete</i>Excluir</a>
+                    </span>
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+
+  <div class="ss-modal-footer">
+    <div class="ss-group-inline">
+      <button class="ss-btn ss-btn-primary" id="aplicarFiltros" [disabled]="!form.valid || visualizarValidarStatus()" (click)="salvarPendenteEnvio()">Salvar Informações</button>
+      <button class="ss-btn ss-btn-primary" id="aplicarFiltros" [disabled]="!form.valid || visualizarValidarStatus() || verificarArquivos()" (click)="iniciarDevolucao()">Iniciar Devolução</button>
+      <a class="ss-btn ss-btn-outline-danger" (click)="close(true)">Fechar</a>
+    </div>
+  </div>
+</sc-modal>

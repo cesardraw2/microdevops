@@ -1,0 +1,26 @@
+.mdi-close-circle-outline::before {
+    font-size: 72px;
+    color: #f33f3f;
+    margin-top: 22px;
+}
+
+.mdi-check-circle-outline::before {
+    font-size: 72px;
+    color: #48e6c8;
+    margin-top: 22px;
+}
+
+.mdi-loading::before {
+    font-size: 72px;
+    margin-top: 22px;
+}
+
+::ng-deep {
+    #dialogo-sucesso>#modal>.ss-modal-small-width {
+        width: 20% !important;
+    }
+}
+
+h5 {
+    font-size: 18px !important;
+}

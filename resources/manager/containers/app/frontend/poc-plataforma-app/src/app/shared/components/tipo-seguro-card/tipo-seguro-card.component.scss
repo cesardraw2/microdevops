@@ -1,0 +1,69 @@
+$ESPACO_15: 15px;
+$flex: flex;
+$normal: normal;
+$corPreta: #000000;
+$center: center;
+
+.caixa-seguros {
+  position: inherit;
+  width: 289px;
+  height: 440px;
+  left: 134px;
+  top: 253px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.ico-seguro-card {
+  color:#00AE9D;
+  font-size:120px;
+}
+
+.caixa-seguros-top {
+  background: #EAEAE9;
+  width: 100%;
+  border-radius: 4px 4px 0px 0px;
+  height: 180px;
+  display: $flex;
+  align-items: $center;
+  justify-content: $center;
+}
+
+.titulo-seguro{
+  font-family: Lato;
+  font-style: $normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 17px;
+  color: $corPreta;
+  flex: none;
+  order: 0;
+  align-self: flex-start;
+  margin: 0px 5px;
+}
+
+.texto-explicativo {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 15px;
+  color: #656565;
+  min-height: 75px;
+}
+
+.botaoAcessarDiv {
+  width: 100%;
+  align-items: end;
+  justify-content: end;
+  display: grid;
+  padding-right: 20px;
+  padding-top: 15px;
+}
+
+.botaoAcessar {
+  border: 1px solid #E0E0E0;
+  border-color: #00D55C;
+  color: #000;
+  width: 100px;
+  background-color: #00D55C;
+}

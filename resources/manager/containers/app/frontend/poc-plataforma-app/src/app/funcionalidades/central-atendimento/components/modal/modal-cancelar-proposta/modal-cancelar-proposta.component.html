@@ -1,0 +1,39 @@
+<ng-template>
+  <sc-modal id="modal-cancelar-proposta" headerTitle="Cancelar Proposta" width="small">
+
+    <div class="ss-modal-body">
+      <div class="ss-grid" style="margin: 20px; width:100%">
+        <div class="col-12" style="text-align: center; margin-top: 20px;">
+          <p>Você tem certeza que deseja </p>
+          <p style="font-weight: bold;">cancelar a proposta N° {{data.numProposta}}</p>
+        </div>
+        <div class="col-12" style="margin-left: 20%; width: 60%;">
+          <form [formGroup]="formConsulta">
+            <sc-form-field>
+                <select scSelect required ngModel formControlName="justificativa">
+                  <option value=""></option>
+                  <option *ngFor="let item of getJustificativasCancelamento()" [value]="item">
+                    {{item}}
+                  </option>
+                </select>
+              </sc-form-field>
+            </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="ss-modal-footer">
+      <div class="ss-grid">
+        <div class="col-6" style="align-content: center;">
+          <button class="ss-btn btn btnConfirmar" (click)="cancelarProposta()" type="button">Sim</button>
+        </div>
+        <div class="col-6" style="align-content: center;">
+          <div>
+            <button class="ss-btn btn success app-top-icon" (click)="close()">Não</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </sc-modal>
+</ng-template>

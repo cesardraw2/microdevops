@@ -1,0 +1,150 @@
+<sc-modal headerTitle="Acompanhar Faturamento" width="large">
+  <form [formGroup]="form" autocomplete="off">
+    <div class="borda-fundo-branco ss-grid">
+
+      <sc-card class="ss-card inside col-12">
+        <div [class.ss-grid]="true" style="margin: 4px">
+          <div class="col-3">
+            <label><b>Status: </b></label> {{this.form.get('faturamento').value.status | enum: 'TIPO_STATUS_FATURAMENTO'}}
+          </div>
+
+          <div class="col-2">
+            <label><b>Central : </b></label> {{this.data.central}}
+          </div>
+
+          <div class="col-2">
+            <label><b>Cooperativa : </b></label> {{this.form.get('faturamento').value.cooperativa}}
+          </div>
+
+
+          <div class="col-3">
+            <label><b>Cnpj : </b></label> {{this.form.get('faturamento').value.cnpjSeguradora | cpfOuCnpj}}
+          </div>
+
+          <div class="col-2">
+            <label><b>Data : </b></label> {{this.form.get('faturamento').value.dataSolicitacao}}
+          </div>
+
+          <div class="col-12" [class.limitTextDiv]="true">
+            <label><b>Razão Social : </b></label> {{this.form.get('faturamento').value.razaoSocial}}
+          </div>
+
+          <div class="col-12">
+            <label><b>Status Anterior: </b></label> {{this.status | enum:'TIPO_STATUS_FATURAMENTO'}}
+          </div>
+
+          <div class="col-12">
+            <label><b>Observação Anterior: </b></label> {{this.observacao}}
+          </div>
+        </div>
+      </sc-card>
+
+      <div class="col-12">
+        <sc-form-field>
+          <label>Justificativa</label>
+          <textarea name="justificativa" formControlName="justificativa" rows="4"
+                    style="width: 99%; resize:none" maxlength="2048" minlength="15"
+                    [readonly]="form.get('faturamento').value.status === faturaEnviada
+                                  || form.get('faturamento').value.status === faturaConcluida
+                                  || form.get('faturamento').value.status === faturaCancelada">
+          </textarea>
+          <sc-msg-erro [control]="form.get('justificativa')"></sc-msg-erro>
+        </sc-form-field>
+      </div>
+
+      <div class="upload-btn-wrapper col-offset-start-11 col-offset-end-1"
+           *ngIf="(form.get('faturamento').value.status !== faturaConcluida)
+                    && (form.get('faturamento').value.status !== faturaCancelada)
+                    && (form.get('faturamento').value.status !== faturaEnviada)">
+        <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="button"><i
+          class="mdi mdi-file-plus material-icons ss-icon"></i>Incluir Arquivo
+        </button>
+        <input type="file" #inputFile (change)="adicionarArquivo($event)" multiple/>
+      </div>
+
+      <div class="ss-table ss-table-sortable col-12" *ngIf="this.form.get('arquivos').value.length != 0 ">
+        <table style="table-layout: fixed; width: 100%;">
+          <thead>
+          <tr>
+            <th width="20%">TIPO DE ARQUIVO</th>
+            <th width="65%">IDENTIFICADOR DO ARQUIVO</th>
+            <th width="5%"></th>
+          </tr>
+          </thead>
+          <tbody formArrayName="arquivos">
+          <tr *ngFor="let arquivo of getControlsArquivos(); let i = index" [formGroupName]="i">
+
+            <td>
+              <input scInput [value]="getArquivo(i).tipo | enum:'TIPO_DOCUMENTO_FATURAMENTO' " readonly="true"
+                     *ngIf="this.tipoIsReadOnly(i)">
+
+              <select formControlName="tipo" [class.ss-form-control]="true" *ngIf="!this.tipoIsReadOnly(i)">
+                <option value=""></option>
+                <option *ngFor="let tipo of tiposArquivos"
+                        [value]=tipo>{{tipo | enum:'TIPO_DOCUMENTO_FATURAMENTO'}}</option>
+              </select>
+
+              <sc-msg-erro [control]="getControlsTipo(i)"></sc-msg-erro>
+            </td>
+
+            <td [class.limitTextDiv]="true">
+              {{getArquivo(i).id || getArquivo(i).dadosArquivo.nomeArquivo}}
+            </td>
+
+            <td data-label="Ações" class="ss-table-actions">
+              <p class="ss-more"><i class="material-icons">more_vert</i>
+                <span class="ss-moretext ss-more-left">
+                  <a class="ss-more-item" (click)="downloadArquivo(arquivo.value)"><i class="material-icons"
+                                                                                      style="padding-right: 5px">cloud_download</i>
+                    Baixar
+                  </a>
+                  <a class="ss-more-item" (click)="removeFaturamento(i)" *ngIf="!this.tipoIsReadOnly(i)"> <i
+                    class="material-icons" style="padding-right: 5px">delete</i>
+                    Excluir
+                  </a>
+                </span>
+              </p>
+            </td>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ss-grid col-12" style="margin-top: 10px">
+        <div class="col-3">
+          <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="button"
+                  (click)="atualizaFaturamento(faturaDisponivel, false, 'MENSAGEM_CONFIRMACAO.FATURAMENTO.MSG003')"
+                  *ngxPermissionsOnly="'RCSENCAMINHARFATURA'"
+                  [disabled]="buttonEncaminharIsDisable || !isArquivoFaturaSelecionado()">
+            Encaminhar Fatura
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="button"
+                  *ngxPermissionsOnly="'RCSCANCELARFATURAMENTO'"
+                  (click)="atualizaFaturamento(faturaCancelada, true, 'MENSAGEM_CONFIRMACAO.FATURAMENTO.MSG004')"
+                  [disabled]="buttonCancelarIsDisable">
+            Cancelar Fatura
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="button"
+                  (click)="atualizaFaturamento(faturaConstestada, true, 'MENSAGEM_CONFIRMACAO.FATURAMENTO.MSG005')"
+                  *ngxPermissionsOnly="'RCSCONTESTARFATURA'"
+                  [disabled]="buttonContestarIsDisable">
+            Contestar Fatura
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="ss-btn ss-btn-primary ss-btn-icon-left" type="button"
+                  (click)="atualizaFaturamento(faturaConcluida, false, 'MENSAGEM_CONFIRMACAO.FATURAMENTO.MSG006')"
+                  *ngxPermissionsOnly="'RCSCONCLUIRFATURAMENTO'"
+                  [disabled]="buttonConcluirIsDisable">
+            Concluir Fatura
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</sc-modal>
+

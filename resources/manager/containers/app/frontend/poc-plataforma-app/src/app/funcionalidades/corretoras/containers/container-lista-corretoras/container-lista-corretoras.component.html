@@ -1,0 +1,85 @@
+<div id="container-corretoras">
+  <sc-card>
+    <sc-card-header>
+      <h2>{{ 'TITULOS.CORRETORAS.TITULO' | translate }}</h2>
+    </sc-card-header>
+    <sc-card-subtitle>
+      <div class="sub-titulo ">
+        <p>
+          {{ 'LABEL.CORRETORAS.FILTRO.LABEL' | translate }}
+        </p>
+      </div>
+    </sc-card-subtitle>
+    <sc-card-content>
+      <form class="formulario" [formGroup]="form">
+        <div class="ss-grid">
+          <div class="col-3">
+            <label>{{'LABEL.CORRETORAS.FILTRO.CAMPOS.NOME.LABEL' | translate }}</label>
+            <input scInput
+              placeholder="{{'LABEL.CORRETORAS.FILTRO.CAMPOS.NOME.PLACEHOLDER' | translate }}"
+              formControlName="nomeCorretora" (keyup)="desabilitarOutrosCampos($event)" />
+          </div>
+          <div class="col-3">
+            <label>{{'LABEL.CORRETORAS.FILTRO.CAMPOS.CODIGO_SUSEP.LABEL' | translate }}</label>
+            <input scInput type="number" pattern="[0-9]*"
+              placeholder="{{'LABEL.CORRETORAS.FILTRO.CAMPOS.CODIGO_SUSEP.PLACEHOLDER' | translate }}"
+              formControlName="codigoSusep" numbersOnly (keyup)="desabilitarOutrosCampos($event)" />
+          </div>
+          <div class="col-1" style="align-self: end; align-items: center;">
+            <button class="ss-btn ss-btn-primary" (click)='pesquisarCorretoras(0)'>
+              <span>
+                <span>
+                  <i class="mdi mdi-magnify" style="font-size: 20px; color: white;">
+                  </i>
+                </span>
+              </span>
+            </button>
+          </div>
+          <div class="col-offset-start-9 / col-offset-end-3" style="align-self: end; align-items: center;">
+            <button (click)="criarVinculo()" class="ss-btn ss-btn-primary">
+              <span style="font-size: 14px; color: white;">
+                {{ 'LABEL.CORRETORAS.FILTRO.BTN.CRIAR_VINCULO' | translate }}
+              </span>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div>
+        <div id="banner-comissionamento" *ngIf="(corretoras$ | async) == undefined">{{
+          'MENSAGEM.CORRETORAS.CORRETORA_NAO_LOCALIZADA' | translate }}</div>
+        <div *ngIf="(corretoras$ | async)?.length > 0" class="ss-table ss-table-sortable ss-table-striped">
+          <table>
+            <thead class="linha-alinhamento-left">
+              <tr>
+                <th>{{ 'LABEL.CORRETORAS.TABELA.HEADER.CORRETORA' | translate }}</th>
+                <th>{{ 'LABEL.CORRETORAS.TABELA.HEADER.CENTRAL_COOPERATIVA' | translate }}</th>
+                <th>{{ 'LABEL.CORRETORAS.TABELA.HEADER.CODIGO_SUSEP' | translate }}</th>
+                <th>{{ 'LABEL.CORRETORAS.TABELA.HEADER.EXCLUIR' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="linha-alinhamento" *ngFor="let corretora of corretoras$ | async | paginate: { id: 'paginacao',
+                  itemsPerPage: 10,
+                  currentPage: (paginacao$ | async)?.pagina + 1,
+                  totalItems: (paginacao$ | async)?.totalRegistros}">
+                <td data-label="Corretora" style="justify-content: flex-start;">{{ corretora.nomeCorretora }}</td>
+                <td data-label="Cooperativa" style="justify-content: flex-start;">{{ corretora.nomeCooperativa }}</td>
+                <td data-label="Código SUSEP">{{ corretora.numeroSusep }}</td>
+                <td data-label="Excluir">
+                  <a class="excluir" (click)="excluirCentral(corretora.id)">
+                    <i class="mdi mdi-minus-circle-outline material-icons"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls id="paginacao" (pageChange)="pageChanged($event)"
+            (pageBoundsCorrection)="pageChanged($event)" maxSize="10" directionLinks="true" autoHide="true"
+            responsive="true" previousLabel="{{ 'PAGINACAO.ANTERIOR' | translate }}"
+            nextLabel="{{ 'PAGINACAO.PROXIMO' | translate }}">
+          </pagination-controls>
+        </div>
+      </div>
+    </sc-card-content>
+  </sc-card>
+</div>

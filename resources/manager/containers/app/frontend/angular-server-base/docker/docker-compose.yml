@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  angular:
+    build: ..
+    volumes:
+      - ..:/app
+      - /app/node_modules
+    ports:
+      - "4200:4200"
+    command: npm start
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=1000

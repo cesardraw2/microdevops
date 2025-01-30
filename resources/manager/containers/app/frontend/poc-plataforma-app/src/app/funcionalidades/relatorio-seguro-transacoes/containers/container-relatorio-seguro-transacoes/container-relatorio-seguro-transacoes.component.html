@@ -1,0 +1,165 @@
+<div class="borda-fundo-branco">
+  <section>
+    <form [formGroup]="formRelatorioSeguroTransacoes" autocomplete="off"
+          (ngSubmit)="consultarRelatorioVendasSeguroTransacoes(instituicaoForm.formulario)">
+      <div class="ss-grid">
+        <div class="col-12">
+          <h5> {{ 'RELATORIOS.TITULO.TRANSACOES' | translate }}</h5>
+        </div>
+        <div class="col-12">
+          <sc-instituicao formControlName="instituicao"
+                          [filterCentral]="verificaBancoob()"
+                          [coopRequerid]="false"
+                          [validarCentralCooperativaPeloUsuarioLogado]="isValidarCentralCooperativaPeloUsuarioLogado"
+                          [iniciarCooperativaDisabled]="isIniciarCooperativaDisabled"
+                          (informarCooperativaSelecionada)="validarCooperativaSelecionada($event)"
+                          (isCentralUsuarioLogado)="isCentralTrue($event)"
+                          (isUsuario0001Event)="isUsuario0001Event()"
+                          #instituicaoForm
+          ></sc-instituicao>
+        </div>
+
+        <div class="col-12 ss-grid">
+          <div class="col-6">
+            <sc-form-field>
+              <input scInput scLabel="{{ 'RELATORIOS.LABELS.PA' | translate }}" formControlName="pontoAtendimento"
+                     type="number"
+                     min="0"
+                     max="9999" class="input-pa" oninput="validity.valid||(value=value.replace(/\D+/g, ''))"/>
+              <sc-msg-erro [control]="formRelatorioSeguroTransacoes.get('pontoAtendimento')"></sc-msg-erro>
+            </sc-form-field>
+          </div>
+
+          <div class="col-3">
+            <sc-form-field>
+              <input scInput
+                     scLabel="{{ 'RELATORIOS.LABELS.IDP' | translate }}"
+                     formControlName="dataInicio"
+                     bsDatepicker
+                     [placeholder]="'DD/MM/YYYY'"
+                     [maxDate]="dataMaxInicio"
+                     (input)="verificarDataInicio($event)"
+                     (bsValueChange)="verificarDataInicio($event)"
+                     (change)="verificarDataInicio($event)"
+                     (focus)="verificarDataInicio($event)"
+                     [bsConfig]="{minMode: 'day',dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-datapick', showWeekNumbers: false}"/>
+              <sc-msg-erro [control]="formRelatorioSeguroTransacoes.get('dataInicio')"></sc-msg-erro>
+            </sc-form-field>
+          </div>
+
+          <div class="col-3">
+            <sc-form-field>
+              <input scInput
+                     scLabel="{{ 'RELATORIOS.LABELS.FDP' | translate }}"
+                     formControlName="dataFim"
+                     bsDatepicker
+                     [maxDate]="dataMaxFim"
+                     (bsValueChange)="verificarDataFim()"
+                     (change)="verificarDataFim()"
+                     (focus)="verificarDataFim()"
+                     [placeholder]="'DD/MM/YYYY'"
+                     [minDate]="formRelatorioSeguroTransacoes.get('dataInicio').value"
+                     [bsConfig]="{minMode: 'day',dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-datapick', showWeekNumbers: false}"/>
+              <sc-msg-erro [control]="formRelatorioSeguroTransacoes.get('dataFim')"></sc-msg-erro>
+            </sc-form-field>
+          </div>
+        </div>
+
+      </div>
+
+      <div *ngIf="isMostrarTabelaRelatorio">
+        <br>
+        <div class="ss-table ss-table-sortable">
+          <table id="minhaTabela">
+            <thead>
+            <tr>
+              <th class="titulosTabela"><span
+                class="labelTabela">{{ 'RELATORIOS.LABELS.TABELA.CTL' | translate }}</span></th>
+              <th class="titulosTabela"><span
+                class="labelTabela">{{ 'RELATORIOS.LABELS.TABELA.COOP' | translate }}</span></th>
+              <th class="titulosTabela"><span
+                class="labelTabela">{{ 'RELATORIOS.LABELS.TABELA.NOME' | translate }}</span></th>
+              <th class="titulosTabela"><span
+                class="labelTabela">{{ 'RELATORIOS.LABELS.TABELA.CPF' | translate }}</span></th>
+              <th class="titulosTabela"><span
+                class="labelTabela">{{ 'RELATORIOS.LABELS.TABELA.DATA' | translate }}</span></th>
+              <th class="titulosTabela"><span
+                class="labelTabela">{{ 'RELATORIOS.LABELS.TABELA.VALOR' | translate }}</span></th>
+              <th class="titulosTabela"><span
+                class="labelTabela">{{ 'RELATORIOS.LABELS.TABELA.FORMP' | translate }}</span></th>
+              <th class="titulosTabela"><span
+                class="labelTabela">{{ 'RELATORIOS.LABELS.TABELA.CANAL' | translate }}</span></th>
+              <th class="titulosTabela"><span
+                class="labelTabela">{{ 'RELATORIOS.LABELS.TABELA.SITUACAO' | translate }}</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="dadosTabela" style="margin-left: -0.1rem;"
+                *ngFor="let dado of resultadoConsulta | paginate: { id: 'paginacao',
+                                                    itemsPerPage: qtdItensPorPagina,
+                                                    currentPage: currentPage,
+                                                    totalItems: paginacao.totalRegistros }">
+
+              <td class="col-1 dadoTabela">{{ dado.central}}</td>
+              <td class="col-1 dadoTabela">{{ dado.cooperativa }}</td>
+              <td class="col-1 dadoTabela">{{ dado.nome }}</td>
+              <td class="col-1 dadoTabela">{{ dado.cpf | cpfOuCnpj}}</td>
+              <td class="col-1 dadoTabela">{{ dado.data | date:'dd/MM/yyyy' }}</td>
+              <td class="col-1 dadoTabela">{{ dado.valor | currency:'BRL'}}</td>
+              <td class="col-1 dadoTabela">{{ dado.formaPagamento}}</td>
+              <td class="col-1 dadoTabela">{{ dado.canal }}</td>
+              <td class="col-1 dadoTabela">{{ dado.situacao}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <pagination-controls
+            id="paginacao"
+            [class.my-pagination]="true"
+            maxSize="10"
+            directionLinks="true"
+            previousLabel="Anterior"
+            nextLabel="Próximo"
+            [responsive]="true"
+            (pageChange)="pageChanged(instituicaoForm.formulario, $event)">
+          </pagination-controls>
+        </div>
+      </div>
+    </form>
+    <br>
+  </section>
+</div><br>
+<sc-card>
+  <sc-card-content>
+    <div class="ss-grid">
+      <div class="col-1 col-md-2 justify-content-start">
+        <button *ngIf="true" class="ss-btn ss-btn-outline-default"
+                [disabled]="false" routerLink="/seguros-gerais">
+          {{ 'RELATORIOS.BTN.VLR' | translate }}
+        </button>
+      </div>
+      <div *ngIf="!isConsultando" class="col-9 col-md-8">
+      </div>
+      <div *ngIf="isConsultando" class="col-10 col-md-8">
+      </div>
+      <div class="col-1 col-md-1 justify-content-end" *ngIf="isConsultando">
+        <button class=" ss-btn ss-btn-primary" [disabled]="isDisabledBtnConsulta"
+                (click)="consultarRelatorioVendasSeguroTransacoes()">
+          {{ 'RELATORIOS.BTN.CONSULTAR' | translate }}
+        </button>
+      </div>
+      <div *ngIf="!isConsultando" class="col-1 col-md- justify-content-end">
+        <button class=" ss-btn ss-btn-primary"
+                (click)="novaConsulta()">
+          {{ 'RELATORIOS.BTN.NCONSULTAR' | translate }}
+        </button>
+      </div>
+      <div *ngIf="!isConsultando" class="col-1 col-md- justify-content-end">
+        <button class=" ss-btn ss-btn-primary"
+                (click)="gerarCSV()">
+          <span><i style="margin-right: 0.3rem" class="mdi mdi-download"></i> </span>
+          {{ 'RELATORIOS.BTN.GRCSV' | translate }}
+        </button>
+      </div>
+    </div>
+  </sc-card-content>
+</sc-card>

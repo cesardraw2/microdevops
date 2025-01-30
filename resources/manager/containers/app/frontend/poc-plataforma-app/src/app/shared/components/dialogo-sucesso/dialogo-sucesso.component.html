@@ -1,0 +1,11 @@
+<sc-modal id="dialogo-sucesso" width="small" headerTitle="Atenção">
+    <div class="ss-modal-body" style="text-align: center;padding: 20px;">
+        <p>{{data.message}}</p>
+    </div>
+    <div class="ss-modal-footer">
+        <div class="ss-group-inline">
+            <a class="ss-btn ss-btn-success" (click)="close(true)">{{data.textSim}}</a>
+            <a class="ss-btn ss-btn-outline-danger" (click)="close(false)">{{data.textNao}}</a>
+        </div>
+    </div>
+</sc-modal>

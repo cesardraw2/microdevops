@@ -1,0 +1,34 @@
+<div class="centralizar-card-externo">
+  <div class="caixa-seguros">
+    <div class="caixa-seguros-top">
+      <div style="display: flex; flex: auto; margin-left: 20px; margin-top: 13px;">
+        <label class="titulo-seguro">Quero Gerenciar</label>
+      </div>
+    </div>
+    <div class="legenda-caixa"><label class="legenda-caixa-label">CENTRAL DE GESTÃO</label></div>
+    <div class="ajustar-conteudo">
+      <div class="conteudo-label" style="cursor: pointer;" (click)="irParaSegurosGerais()"> 
+        <div>
+          <label class="letra-conteudo">GESTÃO DE</label>
+          <label class="letra-conteudo-tipo">Seguros Gerais</label>
+        </div>
+        <div class="conteudo-label-icon">
+          <i class="mdi mdi-arrow-top-right" style="font-size: 32px; margin-right: 24px;"></i>
+        </div>
+      </div>
+      <div class="conteudo-label" style="cursor: pointer;" (click)="irParaSicoobSeguradora()">
+        <div>
+          <label class="letra-conteudo">GESTÃO DE</label>
+          <label class="letra-conteudo-tipo">Sicoob Seguradora</label>
+        </div>
+        <div class="conteudo-label-icon">
+          <i class="mdi mdi-arrow-top-right"  style="font-size: 32px; margin-right: 24px;"></i>
+        </div>
+      </div>
+    </div>
+    <div class="rodape" (click)="irParaMenuInicial()">
+      <i class="mdi mdi-chevron-left" style="font-size: 20px; margin-right: 10px; color: #7C8593; cursor: pointer;"></i>
+      <label class="letra-rodape">RETORNAR PARA O MENU INICIAL</label>
+    </div>
+  </div>
+</div>

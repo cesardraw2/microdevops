@@ -1,0 +1,27 @@
+<sc-modal id="modal-validacao" headerTitle="{{data.titulo}}" width="medium">
+
+  <div class="ss-modal-body">
+    <div class="ss-grid" style="margin: 20px;">
+      
+      <div class="col-12" style="text-align: center; margin-top: 20px;" >
+        <i class={{data.icone}} style="color:red;"></i>
+      </div>
+
+      <div class="col-12">
+        {{data.subtitulo}}
+      </div>
+      
+      <div class="col-12">  
+        <div *ngFor="let mensagem of data.mensagens" >
+          - {{mensagem}} <br>
+        </div>    
+      </div>
+
+    </div>
+  </div>
+  
+  <div class="botaoDiv">
+    <button class="ss-btn botaoFechar" (click)="close()" type="button">Fechar</button>
+  </div>
+
+</sc-modal>

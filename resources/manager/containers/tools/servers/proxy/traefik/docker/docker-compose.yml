@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  traefik:
+    container_name: "traefik"
+    image: traefik:v2.5
+    command:
+      - "--api.insecure=true"
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"  # Porta para HTTPS, alinha-se com o entrypoint `websecure`
+      - "8080:8080"  # Dashboard
+      - "9001:9001"  # Portainer
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"  # Volume para salvar certificados
+      - "./traefik.yml:/etc/traefik/traefik.yml"
+    networks:
+      - dev-server-network
+
+  whoami:
+    image: containous/whoami
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.dev-server.mshome.net`)"
+      - "traefik.http.routers.whoami.entrypoints=websecure"  # Usa HTTPS para quem acessar
+      - "traefik.http.routers.whoami.tls.certresolver=dev_server_tlschallenge"
+
+networks:
+  dev-server-network:
+    external: true

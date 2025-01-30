@@ -1,0 +1,19 @@
+<div class="caixa-seguros">
+  <div class="caixa-seguros-top">
+    <i [class]="icon"></i>
+  </div>
+  <div style="padding:16px 16px 0px 16px; height: 178px;">
+    <label class="titulo-seguro">{{titulo}}</label>
+    <p class="sub-titulo-seguro">{{textoSubTitulo}}</p>
+    <p class="texto-alerta" *ngIf="opcoes && opcoes.alertMessage">{{opcoes.alertMessage}}</p>
+    <p class="texto-descricao">{{textoDescricao}}</p>
+  </div>
+  <div class="botaoAcessar">
+    <button class="ss-btn ss-btn-primary"
+            (click)="acessarRota()"
+            style="width:100px;"
+            type="button"
+            [disabled]="(linkNavegacao === '' && linkNavegacaoExterna === '') || (opcoes && opcoes.disabled)"
+    >Acessar</button>
+  </div>
+</div>

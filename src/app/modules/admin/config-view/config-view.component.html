@@ -1,0 +1,42 @@
+<mat-card class="p-4">
+    <mat-grid-list cols="2" rowHeight="fit" class="w-full">
+        <mat-grid-tile class="text-right pr-4"><strong>ID:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.id }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>Label:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.label }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>Status:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.status }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>Service Name:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.serviceName }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>URL:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.url }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>Order:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.order }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>Is Created:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.isCreated }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>Arch Type:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.archType }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>Source Path:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.sourcePath }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>Is Backend:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.isBackend }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>Libs:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.libs.join(', ') }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>Category:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.category }}</mat-grid-tile>
+
+        <mat-grid-tile class="text-right pr-4"><strong>Is Enabled:</strong></mat-grid-tile>
+        <mat-grid-tile>{{ dataProvider.isEnabled }}</mat-grid-tile>
+    </mat-grid-list>
+</mat-card>

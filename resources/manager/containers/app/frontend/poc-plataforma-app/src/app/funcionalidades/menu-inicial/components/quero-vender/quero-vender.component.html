@@ -1,0 +1,53 @@
+<div class="centralizar-card-externo">
+  <div class="caixa-seguros">
+    <div class="caixa-seguros-top">
+      <div style="display: flex; flex: auto; margin-left: 20px; margin-top: 13px;">
+        <label class="titulo-seguro">Quero Proteger</label>
+      </div>
+    </div>
+    <div class="legenda-caixa"><label class="legenda-caixa-label">CENTRAL DE VENDAS</label></div>
+    <div class="ajustar-conteudo">
+      <label class="letra-conteudo">Para quem estamos iniciando uma venda?</label>
+      <div style="width: 300px; margin: 15px 25px" *ngIf="isAcessoCpfCnpj">
+        <!-- <sc-capes-cpf-cnpj labelCpfCnpj="CPF ou CNPJ" #cpfCnpjComponent required
+          (showButton)="showButtonHandler($event)">
+        </sc-capes-cpf-cnpj> -->
+
+        <sc-capes-filtro 
+          labelCpfCnpj="CPF ou CNPJ"
+          #cpfCnpjComponent
+          required
+          (showButton)="showButtonHandler($event)"
+          (valueChange)="encaminharProdutos()">
+        </sc-capes-filtro>
+
+        <!-- <label class="letra-conteudo-nome" (click)="mudarAcessoNomeRazao()">Fazer acesso via Nome ou Razão Social</label> -->
+        <!-- <div style="width: 140px; margin-top: 10px;">
+          <button class="ss-btn ss-btn-primary button-center" style="height: 46px;" (click)="encaminharProdutos()"
+            type="button">
+            <span style="color: white;font-size: 18px;">Pesquisar</span> <span>
+              <i class="mdi mdi-magnify" style="font-size: 18px; margin-left: 13px; color: white;"></i> </span>
+          </button>
+        </div> -->
+      </div>
+
+      <!-- <div style="width: 350px; margin: 15px 15px" *ngIf="!isAcessoCpfCnpj">
+        <sc-capes-cpf-cnpj  #cpfCnpjComponent required
+          (showButton)="showButtonHandler($event)">
+        </sc-capes-cpf-cnpj>
+        <label class="letra-conteudo-nome" (click)="mudarAcessoCpfCnpj()">Fazer acesso via CPF ou CNPJ</label>
+        <div style="width: 140px; margin-top: 10px;">
+          <button class="ss-btn ss-btn-primary button-center" style="height: 46px;" (click)="encaminharProdutos()"
+            type="button">
+            <span style="color: white;font-size: 18px;">Pesquisar</span> <span>
+              <i class="mdi mdi-magnify" style="font-size: 18px; margin-left: 13px; color: white;"></i> </span>
+          </button>
+        </div>
+      </div> -->
+    </div>
+    <div class="rodape" (click)="irParaMenuInicial()">
+      <i class="mdi mdi-chevron-left" style="font-size: 20px; margin-right: 10px; color: #7C8593; cursor: pointer;"></i>
+      <label class="letra-rodape">RETORNAR PARA O MENU INICIAL</label>
+    </div>
+  </div>
+</div>

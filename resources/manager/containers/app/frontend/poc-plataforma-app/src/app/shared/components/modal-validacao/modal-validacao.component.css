@@ -1,0 +1,24 @@
+.ss-modal-body{
+    font-size: 16px;
+    text-align: justify;
+  }
+  
+  .botaoDiv {
+    width: 100%;
+    align-items: end;
+    justify-content: end;
+    display: grid;
+    padding: 20px;
+  }
+    
+  .botaoFechar {
+    border: 1px solid #E0E0E0;
+    border-color: #00D55C;
+    color: #000;
+    width: 100px;
+    background-color: #00D55C;
+  }
+  
+  .icone{
+    font-size:80px !important;
+  }

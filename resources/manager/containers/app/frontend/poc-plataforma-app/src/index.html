@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <!--base href="file:///android_asset/www/" /-->
+        <base href="/" />
+        <title>Plataforma de Seguro - Sisbr 3.0</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#1976d2">
+
+        <style type="text/css">
+          .ss-alinhar-loading {
+              position: absolute;
+              left: 50%;
+              top: 40%;
+              transform: translate(-40%, -50%);
+              width: 250px;
+              height: 250px;
+              transform-origin: center;
+          }
+
+          #loading {
+              transform-origin: center;
+              animation: move-cir 20s linear infinite;
+          }
+
+          #linha-t {
+              animation: line-t 2200ms linear infinite;
+          }
+
+          #linha-b {
+              animation: line-b 3200ms ease-in-out infinite backwards;
+          }
+
+          @keyframes move-cir {
+              from {
+                  transform: rotate(0deg);
+              }
+              to {
+                  transform: rotate(3600deg)
+              }
+          }
+
+          @keyframes line-t {
+              0% {
+                  stroke-dasharray: 58px;
+                  stroke-dashoffset: 188px;
+              }
+              40% {
+                  stroke-dasharray: 58px;
+                  stroke-dashoffset: 188px;
+              }
+              65% {
+                  stroke-dasharray: 58px;
+                  stroke-dashoffset: 248px;
+              }
+              85% {
+                  stroke-dasharray: 58px;
+                  stroke-dashoffset: 248px;
+              }
+              100% {
+                  stroke-dasharray: 58px;
+                  stroke-dashoffset: 303;
+              }
+          }
+
+          @keyframes line-b {
+              0% {
+                  stroke-dasharray: 45px;
+                  stroke-dashoffset: 142px;
+              }
+              40% {
+                  stroke-dasharray: 45px;
+                  stroke-dashoffset: 142px;
+              }
+              65% {
+                  stroke-dasharray: 61px;
+                  stroke-dashoffset: 142px;
+              }
+              85% {
+                  stroke-dasharray: 61px;
+                  stroke-dashoffset: 142px;
+              }
+              100% {
+                  stroke-dasharray: 90px;
+                  stroke-dashoffset: 142px;
+              }
+          }
+        </style>
+
+        <script lang="javascript">
+          function isIE() {
+              var ua = window.navigator.userAgent;
+
+              var msie = ua.indexOf('MSIE ');
+              if (msie > 0) {
+                return true;
+              }
+
+              var trident = ua.indexOf('Trident/');
+              if (trident > 0) {
+                return true;
+              }
+
+              return false;
+          }
+
+          if( isIE() ) {
+            window.location.replace('unsupported.html');
+          }
+        </script>
+
+              <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+</head>
+<body>
+    <div>
+        <sc-app>
+          <div class="ss-alinhar-loading">
+            <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="loading-animado">
+                <g id="loading">
+                  <path id="branco" d="M150.5 223.259C190.651 223.259 223.2 190.71 223.2 150.559C223.2 110.408 190.651 77.8592 150.5 77.8592C110.349 77.8592 77.8 110.408 77.8 150.559C77.8 190.71 110.349 223.259 150.5 223.259Z" fill="white" stroke="white" stroke-width="0.25" stroke-miterlimit="10"/>
+                  <path id="cinza" fill-rule="evenodd" clip-rule="evenodd" d="M140.119 224.33C152.077 225.939 164.136 224.631 175.492 220.608C186.847 216.483 196.997 209.743 205.137 200.991C213.277 192.138 219.206 181.475 222.422 169.906C225.637 158.337 225.939 146.064 223.427 134.294C220.914 122.524 215.588 111.558 207.951 102.303C198.203 90.4326 185.039 81.8817 170.266 77.7572C155.393 73.6326 139.616 74.1356 125.045 79.2661C110.473 84.3967 97.9118 93.9536 88.968 106.528C80.0242 119.103 75.2006 134.193 75.1001 149.585C75.1001 149.786 75.1001 149.987 75.2006 150.188C75.2006 162.16 78.1149 174.03 83.6419 184.694C89.169 195.357 97.2084 204.612 107.057 211.453C116.804 218.193 128.26 222.72 140.119 224.33ZM78.9188 149.384C79.0193 149.585 79.0193 149.786 79.0193 149.887C79.0193 161.355 81.7326 172.521 87.0587 182.682C92.2843 192.842 99.9217 201.494 109.267 208.133C118.613 214.773 129.366 218.897 140.722 220.406C152.077 221.915 163.533 220.708 174.286 216.785C185.039 212.962 194.686 206.524 202.424 198.174C210.162 189.824 215.789 179.664 218.804 168.598C221.819 157.532 222.12 145.963 219.708 134.797C217.297 123.731 212.372 113.369 205.137 104.617C205.137 104.617 205.137 104.617 205.137 104.516C195.892 93.1488 183.33 85.0003 169.261 81.0769C155.192 77.1536 140.219 77.6566 126.351 82.5859C112.584 87.5153 100.625 96.5691 92.0833 108.44C83.5414 120.512 79.0193 134.797 78.9188 149.384Z" fill="#C4C4C4"/>
+                  <path id="loading_2" d="M77.11 149.887C77.11 161.657 79.9238 173.225 85.3503 183.587C90.7769 193.949 98.6153 203.003 108.162 209.743C117.709 216.483 128.863 220.809 140.42 222.418C152.077 224.028 163.835 222.72 174.889 218.797C185.943 214.773 195.791 208.234 203.73 199.683C211.669 191.031 217.498 180.67 220.512 169.302C223.628 158.035 223.929 146.064 221.417 134.596C218.904 123.127 213.779 112.464 206.242 103.41" stroke="#00C9B8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                  <path id="base-logo" d="M125.6 147.059C122.5 144.059 123.7 138.859 127.9 137.659L168.1 125.659C172.2 124.459 176.1 128.159 175.1 132.259L165.3 172.859C164.3 177.059 159.1 178.559 156 175.659L125.6 147.059Z" fill="#00A091"/>
+                  <path id="linha-t" d="M101.8 149.859L114.7 101.059C115.9 96.6592 121.4 95.1592 124.6 98.3592L160.5 134.459C163.7 137.659 162.2 143.159 157.8 144.359L109 157.059C104.6 158.259 100.6 154.259 101.8 149.859Z" stroke="white" stroke-width="4"/>
+                  <path id="linha-b" d="M135.9 165.459L184.5 152.059C188.9 150.859 192.9 154.859 191.8 159.259L178.4 208.559C177.2 212.959 171.7 214.459 168.5 211.159L133.3 175.259C130.1 172.059 131.6 166.559 135.9 165.459Z" stroke="white" stroke-width="4"/>
+                </g>
+            </svg>
+        </div>
+        </sc-app>
+    </div>
+    <!--script>
+     window.addEventListener = function () {
+         EventTarget.prototype.addEventListener.apply(this, arguments);
+     };
+     window.removeEventListener = function () {
+         EventTarget.prototype.removeEventListener.apply(this, arguments);
+     };
+     document.addEventListener = function () {
+         EventTarget.prototype.addEventListener.apply(this, arguments);
+     };
+     document.removeEventListener = function () {
+         EventTarget.prototype.removeEventListener.apply(this, arguments);
+     };
+    </script-->
+    <!--script type="text/javascript" src="cordova.js"></script-->
+</body>
+</html>

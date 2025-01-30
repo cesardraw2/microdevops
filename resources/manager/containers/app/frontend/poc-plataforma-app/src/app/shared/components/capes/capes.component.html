@@ -1,0 +1,20 @@
+<form [formGroup]="formulario">
+  <div class="sgr-center sgr-size-cpf-cnpj-field">
+    <div class="col-12">
+      <sc-form-field>
+
+        <input scInput
+              [readOnly]="!isReadOnly"
+              [scLabel]="labelCpfCnpj"
+              formControlName="cpfCnpj"
+              (keydown)="consultarPessoas($event)"
+              (blur)="consultarPessoas($event)"
+              (focus)="consultarPessoas($event)"
+              (onHidden)="executarValidacao()"
+              [placeholder]="placeHolder"
+              value="{{(pessoa | async)?.idPessoa  ? ((pessoa | async)?.cpfCnpj | cpfOuCnpj)  + ' - ' + (pessoa | async)?.nomeCompleto : ''}}"/>
+        <sc-msg-erro [control]="formulario.get('cpfCnpj')" ></sc-msg-erro>
+      </sc-form-field>
+    </div>
+  </div>
+</form>

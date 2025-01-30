@@ -1,0 +1,33 @@
+
+.input-pa::-webkit-outer-spin-button,::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
+}
+
+.dadoTabela {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.titulosTabela{
+  justify-content: center;
+  display: flex;
+  text-align: center;
+}
+
+.labelTabela {
+  margin-right: 1.1rem;
+}
+
+::ng-deep .ss-form-group label {
+  margin-bottom: 1px !important;
+}
+
+@media screen and (max-width: 840px) {
+  .dadoTabela {
+    font-size: 12px;
+  }
+}
+

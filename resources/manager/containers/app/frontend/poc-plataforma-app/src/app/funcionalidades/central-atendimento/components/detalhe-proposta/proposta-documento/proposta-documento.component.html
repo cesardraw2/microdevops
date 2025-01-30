@@ -1,0 +1,72 @@
+<div>
+  <form [formGroup]="formDocumento">
+  <h5>Documentos da Proposta</h5>
+  <sc-card style="margin:10px;">
+    <sc-card-header>
+      <span style="font-family: Lato;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 30px;
+      display: flex;
+      align-items: center;">Filtrar dados</span>
+      <hr style="border: 0.5px solid #E3E4E8">
+    </sc-card-header>
+    <sc-card-content>
+      <div>
+        <span style="margin-right: 10px;"><label class="label-proposta-documento">Arquivo:</label></span>
+        <span><input scInput formControlName="nomeDocumento" style="width: 10%;"/></span>
+
+        <span style="margin-right: 10px;margin-left: 100px;"><label class="label-proposta-documento">Período:</label></span>
+        <span>
+          <input scInput
+          formControlName="dataDocumento"
+            scLabel="Data"
+            bsDatepicker
+            [placeholder]="'DD/MM/YYYY'"
+            [bsConfig]="bsConfig"
+            style="width: 15%;"/>
+          </span>
+
+        <span style="margin-right: 10px;margin-left: 100px;"><label class="label-proposta-documento">Tipo Documento:</label></span>
+        <span>
+          <select scSelect class="ss-form-control" style="width: 21%;" formControlName="tipoDocumento">
+            <option value="">Selecione</option>
+            <option *ngFor="let tipo of tiposDocumento" [value]="tipo">
+              {{ tipo }}
+            </option>
+          </select>
+        </span>
+      </div>
+    </sc-card-content>
+  </sc-card>
+  <div>
+    <div class="ss-table ss-table-sortable">
+      <table id="minhaTabela">
+        <thead>
+          <tr>
+            <th>ARQUIVO</th>
+            <th>DATA/HORA ENVIO</th>
+            <th>TIPO DE DOCUMENTO</th>
+            <th style="text-align: end;">AÇÃO</th>
+          </tr>
+        </thead>
+          <tbody>
+            <tr *ngFor="let documento of documentosFilter">
+              <td>{{ documento.id }}</td>
+              <td>{{ documento.dataDocumento |  date:'dd/MM/yyyy HH:mm:ss' }}</td>
+              <td>{{ documento.tipoDocumento }}</td>
+              <td data-label="Ações">
+                <div style="text-align: end;">
+                  <a (click)="obterDadosArquivo(documento)">
+                    <i class="material-icons" title="Baixar" style="padding-right: 5px">cloud_download</i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+  </form>
+</div>
